@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srivari Seva Portal</title>
+    <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 
@@ -15,15 +16,15 @@
     <nav>
         <div>
             <div>
-                <img src="images/logo.png" alt="Temple Logo" width="80">
-                <div>
+                <img src="{% static 'logo.png' %}" alt="Temple Logo" width="95" height="90">
+            <div>
                     <h1>Srivari Seva Portal</h1>
                     <p>Online Darshan & Temple Services</p>
                 </div>
             </div>
             <div>
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="home.html">Home</a></li>
                     <li><a href="#">About Temple</a></li>
                     <li><a href="#">Darshan</a></li>
                     <li><a href="#">Seva</a></li>
