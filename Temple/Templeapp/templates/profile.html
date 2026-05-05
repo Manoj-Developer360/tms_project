@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>User Profile</title>
+
+    <link rel="stylesheet"
+          href="{% static 'style.css' %}">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Poppins,sans-serif;
+        }
+
+        body{
+            background:#fff8f0;
+        }
+
+        .profile-container{
+
+            width:400px;
+
+            margin:80px auto;
+
+            background:white;
+
+            padding:40px;
+
+            border-radius:20px;
+
+            text-align:center;
+
+            box-shadow:0 10px 30px rgba(0,0,0,0.2);
+
+        }
+
+        .profile-container img{
+
+            width:100px;
+
+            height:100px;
+
+            border-radius:50%;
+
+            border:4px solid #ffd700;
+
+            margin-bottom:20px;
+
+        }
+
+        .profile-container h2{
+
+            color:#8b2500;
+
+            margin-bottom:10px;
+
+        }
+
+        .profile-container p{
+
+            font-size:16px;
+
+            margin-bottom:25px;
+
+            color:#555;
+
+        }
+
+        .profile-container button{
+
+            padding:12px 30px;
+
+            border:none;
+
+            border-radius:30px;
+
+            background:#8b2500;
+
+            color:white;
+
+            cursor:pointer;
+
+            font-size:15px;
+
+            font-weight:600;
+
+            transition:0.3s;
+
+        }
+
+        .profile-container button:hover{
+
+            background:#b63b00;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="profile-container">
+
+        <img src="{% static 'logo.png' %}"
+             alt="Profile">
+
+        <h2>Welcome Devotee</h2>
+
+        <p>
+
+            Mobile Number:
+
+            <strong>
+
+                {{ mobile }}
+
+            </strong>
+
+        </p>
+
+        <a href="{% url 'logout' %}">
+
+            <button>
+
+                Logout
+
+            </button>
+
+        </a>
+
+    </div>
+
+</body>
+
+</html>
