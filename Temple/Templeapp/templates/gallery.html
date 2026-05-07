@@ -1,0 +1,535 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temple Gallery - Srivari Seva Portal</title>
+
+    <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:#f7f1e8;
+            color:#1f2937;
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar{
+            width:100%;
+            background:#fff;
+            padding:18px 70px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            box-shadow:0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .logo-section{
+            display:flex;
+            align-items:center;
+            gap:16px;
+        }
+
+        .logo-section img{
+            width:68px;
+            height:68px;
+            object-fit:contain;
+        }
+
+        .logo-text h2{
+            font-size:22px;
+            color:#7c2d12;
+            font-weight:700;
+        }
+
+        .logo-text p{
+            color:#6b7280;
+            font-size:14px;
+            margin-top:2px;
+        }
+
+        .nav-actions{
+            display:flex;
+            gap:16px;
+        }
+
+        .nav-btn{
+            padding:14px 30px;
+            border-radius:16px;
+            color:#fff;
+            font-weight:600;
+            transition:0.3s ease;
+            box-shadow:0 8px 20px rgba(234,88,12,0.18);
+        }
+
+        .home-btn{
+            background:linear-gradient(135deg,#ff7a00,#ff5e00);
+        }
+
+        .logout-btn{
+            background:linear-gradient(135deg,#dc2626,#b91c1c);
+        }
+
+        .nav-btn:hover{
+            transform:translateY(-2px);
+        }
+
+        /* ================= MAIN SECTION ================= */
+
+        .main-container{
+            width:88%;
+            margin:55px auto;
+        }
+
+        /* ================= HERO CARD ================= */
+
+        .hero-card{
+            background:#fff;
+            border-radius:34px;
+            padding:45px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            position:relative;
+            overflow:hidden;
+            box-shadow:0 12px 35px rgba(0,0,0,0.05);
+        }
+
+        .hero-card::after{
+            content:'';
+            position:absolute;
+            width:320px;
+            height:320px;
+            background:#fff5eb;
+            border-radius:50%;
+            right:-120px;
+            top:-120px;
+        }
+
+        .hero-left{
+            display:flex;
+            align-items:center;
+            gap:35px;
+            z-index:2;
+        }
+
+        .profile-img{
+            width:145px;
+            height:145px;
+            border-radius:50%;
+            border:6px solid #f59e0b;
+            overflow:hidden;
+            background:#fff;
+            flex-shrink:0;
+        }
+
+        .profile-img img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+
+        .hero-content h1{
+            font-size:50px;
+            color:#7c2d12;
+            font-weight:800;
+            margin-bottom:10px;
+        }
+
+        .hero-content p{
+            color:#6b7280;
+            font-size:18px;
+            line-height:32px;
+            max-width:700px;
+        }
+
+        .verified-badge{
+            z-index:2;
+            background:linear-gradient(135deg,#ff9f00,#ff7b00);
+            color:#fff;
+            padding:16px 36px;
+            border-radius:40px;
+            font-weight:700;
+            font-size:16px;
+            box-shadow:0 8px 20px rgba(255,123,0,0.25);
+        }
+
+        /* ================= TITLE SECTION ================= */
+
+        .section-header{
+            margin-top:70px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .section-header h2{
+            font-size:45px;
+            color:#7c2d12;
+            font-weight:800;
+        }
+
+        .ticket-badge{
+            background:#fff;
+            color:#ff6600;
+            padding:16px 36px;
+            border-radius:40px;
+            font-weight:700;
+            box-shadow:0 6px 18px rgba(0,0,0,0.04);
+        }
+
+        /* ================= GALLERY ================= */
+
+        .gallery{
+            margin-top:40px;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:30px;
+        }
+
+        .card{
+            background:#fff;
+            border-radius:28px;
+            overflow:hidden;
+            box-shadow:0 10px 30px rgba(0,0,0,0.05);
+            transition:0.35s ease;
+            position:relative;
+        }
+
+        .card:hover{
+            transform:translateY(-10px);
+            box-shadow:0 18px 45px rgba(0,0,0,0.10);
+        }
+
+        .card-image{
+            overflow:hidden;
+            height:260px;
+        }
+
+        .card-image img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            transition:0.5s ease;
+        }
+
+        .card:hover img{
+            transform:scale(1.08);
+        }
+
+        .card-content{
+            padding:22px;
+        }
+
+        .card-content h3{
+            font-size:22px;
+            color:#7c2d12;
+            margin-bottom:8px;
+            font-weight:700;
+        }
+
+        .card-content p{
+            color:#6b7280;
+            font-size:14px;
+            line-height:24px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:1100px){
+
+            .hero-card{
+                flex-direction:column;
+                align-items:flex-start;
+                gap:30px;
+            }
+
+            .hero-left{
+                flex-direction:column;
+                align-items:flex-start;
+            }
+
+            .hero-content h1{
+                font-size:40px;
+            }
+
+            .section-header h2{
+                font-size:42px;
+            }
+        }
+
+        @media(max-width:768px){
+
+            .navbar{
+                padding:16px 20px;
+                flex-direction:column;
+                gap:20px;
+            }
+
+            .nav-actions{
+                width:100%;
+            }
+
+            .nav-btn{
+                flex:1;
+                text-align:center;
+            }
+
+            .main-container{
+                width:92%;
+            }
+
+            .hero-card{
+                padding:28px;
+            }
+
+            .hero-content h1{
+                font-size:34px;
+            }
+
+            .hero-content p{
+                font-size:15px;
+                line-height:28px;
+            }
+
+            .section-header{
+                flex-direction:column;
+                align-items:flex-start;
+                gap:20px;
+            }
+
+            .section-header h2{
+                font-size:34px;
+            }
+
+            .gallery{
+                grid-template-columns:1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <div class="navbar">
+
+        <div class="logo-section">
+
+            <img src="{% static 'logo.png' %}" alt="logo">
+
+            <div class="logo-text">
+                <h2>Srivari Seva Portal</h2>
+                <p>Online Darshan & Temple Services</p>
+            </div>
+
+        </div>
+
+        <div class="nav-actions">
+
+            <a href="{% url 'home' %}" class="nav-btn home-btn">
+               Back Home
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ================= MAIN CONTAINER ================= -->
+
+    <div class="main-container">
+
+        <!-- HERO CARD -->
+
+        <div class="hero-card">
+
+            <div class="hero-left">
+
+                <div class="hero-content">
+
+                    <h1>Divine Temple Gallery</h1>
+
+                    <p>
+                        Explore sacred festivals, spiritual rituals, divine processions,
+                        and timeless temple traditions beautifully captured through
+                        devotional moments and holy celebrations.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="verified-badge">
+                Spiritual Collection
+            </div>
+
+        </div>
+
+        <!-- SECTION TITLE -->
+
+        <div class="section-header">
+
+            <h2>Temple Moments</h2>
+
+        </div>
+
+        <!-- GALLERY -->
+
+        <div class="gallery">
+
+            <div class="card">
+
+                <div class="card-image">
+                    <img src="{% static '1.jpg' %}">
+                </div>
+
+                <div class="card-content">
+                    <h3>Brahmotsavam Celebrations 🕉️</h3>
+                    <p>
+                        The grand annual festival of the temple featuring divine processions, vibrant decorations, 
+                        and sacred rituals performed with utmost devotion.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-image">
+                    <img src="{% static '2.jpg' %}">
+                </div>
+
+                <div class="card-content">
+                    <h3>Deepotsavam 🪔</h3>
+                    <p>
+                        A mesmerizing celebration where thousands of lamps illuminate the temple surroundings,
+                         creating a divine and peaceful spiritual atmosphere.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-image">
+                    <img src="{% static '3.jpg' %}">
+                </div>
+
+                <div class="card-content">
+                    <h3>Garuda Vahana Seva 🦅</h3>
+                    <p>
+                       Traditional poojas and daily rituals performed with devotion
+                        as per ancient Agama shastras and temple customs.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-image">
+                    <img src="{% static '4.jpg' %}">
+                </div>
+
+                <div class="card-content">
+                    <h3>Divine Festival Rituals 🙏</h3>
+                    <p>
+                        Traditional poojas and sacred ceremonies performed during temple festivals with devotion,
+                         following ancient Agama shastras and divine customs.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-image">
+                    <img src="{% static '5.jpg' %}">
+                </div>
+
+                <div class="card-content">
+                    <h3>Devotee Pilgrimage 👣</h3>
+                    <p>
+                     Devotees visiting the holy temple seeking blessings,
+                      peace of mind, and spiritual fulfillment through divine darshan.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-image">
+                    <img src="{% static '6.jpg' %}">
+                </div>
+
+                <div class="card-content">
+                    <h3>Cultural & Spiritual Events 🎭</h3>
+                    <p>
+                        Traditional dance, music, and devotional performances 
+                        conducted during temple festivals celebrating rich cultural heritage.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-image">
+                    <img src="{% static '7.jpg' %}">
+                </div>
+
+                <div class="card-content">
+                    <h3>Divine Temple Architecture 🏛️</h3>
+                    <p>
+                        Magnificent temple structures showcasing ancient craftsmanship, 
+                        sacred design principles, and timeless spiritual heritage.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-image">
+                    <img src="{% static '8.jpg' %}">
+                </div>
+
+                <div class="card-content">
+                    <h3>Prasadam Distribution 🍛</h3>
+                    <p>
+                       Holy prasadam offered to devotees as a divine blessing, 
+                       symbolizing purity, gratitude, and spiritual nourishment.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

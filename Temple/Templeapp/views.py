@@ -25,6 +25,11 @@ def home(request):
 def festival(request):
     return render(request, 'festival.html')
 
+def gallery(request):
+    return render(request,'gallery.html')
+
+def contact(request):
+    return render(request,'contact.html')
 
 # LOGIN PAGE
 
@@ -273,8 +278,6 @@ def seva_booking(request):
 
         seva_name = request.POST.get("seva_name")
 
-        seva_time = request.POST.get("seva_time")
-
         seva_date = request.POST.get("seva_date")
 
         booking_id = "SEVA" + str(
@@ -291,11 +294,10 @@ def seva_booking(request):
 
             seva_name=seva_name,
 
-            seva_time=seva_time,
-
             seva_date=seva_date,
 
             booking_id=booking_id
+
         )
 
         messages.success(
@@ -306,7 +308,6 @@ def seva_booking(request):
         return redirect("profile")
 
     return render(request, 'seva.html')
-
 
 # DONATION
 
@@ -324,7 +325,11 @@ def donation(request):
 
         full_name = request.POST.get("full_name")
 
+        email = request.POST.get("email")
+
         mobile = request.POST.get("mobile")
+
+        address = request.POST.get("address")
 
         amount = request.POST.get("amount")
 
@@ -336,11 +341,16 @@ def donation(request):
 
             full_name=full_name,
 
+            email=email,
+
             mobile_number=mobile,
+
+            address=address,
 
             amount=amount,
 
             payment_id=payment_id
+
         )
 
         messages.success(

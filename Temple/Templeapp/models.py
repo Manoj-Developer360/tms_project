@@ -63,33 +63,25 @@ class DarshanBooking(models.Model):
     def __str__(self):
 
         return self.booking_id
-
-
-# SEVA BOOKING
+    
+  # SEVA MODEL  
 
 class SevaBooking(models.Model):
 
     SEVA_CHOICES = (
 
-        ("Suprabhata Seva", "Suprabhata Seva"),
+        ("Suprabhata Seva - 3:00 AM", "Suprabhata Seva - 3:00 AM"),
 
-        ("Archana", "Archana"),
+        ("Thomala Seva - 4:00 AM", "Thomala Seva - 4:00 AM"),
 
-        ("Kalyanotsavam", "Kalyanotsavam"),
+        ("Archana - 4:30 AM", "Archana - 4:30 AM"),
 
-        ("Thomala Seva", "Thomala Seva"),
+        ("Kalyanotsavam - 10:00 AM", "Kalyanotsavam - 10:00 AM"),
 
-    )
+        ("Unjal Seva - 7:00 PM", "Unjal Seva - 7:00 PM"),
 
-    TIME_CHOICES = (
-
-        ("6AM", "6AM"),
-
-        ("9AM", "9AM"),
-
-        ("12PM", "12PM"),
-
-        ("6PM", "6PM"),
+        ("Sahasra Deepalankara Seva - 5:30 PM",
+         "Sahasra Deepalankara Seva - 5:30 PM"),
 
     )
 
@@ -107,11 +99,6 @@ class SevaBooking(models.Model):
         choices=SEVA_CHOICES
     )
 
-    seva_time = models.CharField(
-        max_length=50,
-        choices=TIME_CHOICES
-    )
-
     seva_date = models.DateField()
 
     booking_id = models.CharField(max_length=30)
@@ -122,8 +109,7 @@ class SevaBooking(models.Model):
 
         return self.booking_id
 
-
-# DONATION
+# DONATION MODEL
 
 class Donation(models.Model):
 
@@ -134,7 +120,11 @@ class Donation(models.Model):
 
     full_name = models.CharField(max_length=200)
 
+    email = models.EmailField()
+
     mobile_number = models.CharField(max_length=10)
+
+    address = models.TextField()
 
     amount = models.IntegerField()
 

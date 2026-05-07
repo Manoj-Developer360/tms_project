@@ -7,443 +7,588 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+          content="width=device-width, initial-scale=1.0">
 
     <title>Upcoming Festivals - Srivari Seva Portal</title>
 
     <link rel="icon"
-        type="image/png"
-        href="{% static 'logo.png' %}">
+          type="image/png"
+          href="{% static 'logo.png' %}">
 
     <link rel="preconnect"
-        href="https://fonts.googleapis.com">
+          href="https://fonts.googleapis.com">
 
     <link rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
+          href="https://fonts.gstatic.com"
+          crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
         }
 
-        body {
+        body{
 
             background:
-                linear-gradient(rgba(255, 247, 237, 0.92),
-                    rgba(255, 247, 237, 0.92)),
+                linear-gradient(
+                    rgba(255,247,237,0.92),
+                    rgba(255,247,237,0.92)
+                ),
                 url("{% static 'temple-bg.jpg' %}");
 
-            background-size: cover;
+            background-size:cover;
 
-            background-position: center;
+            background-position:center;
 
-            background-attachment: fixed;
+            background-attachment:fixed;
 
-            min-height: 100vh;
+            min-height:100vh;
 
-            color: #1f2937;
+            color:#1f2937;
 
         }
 
         /* ================= NAVBAR ================= */
 
-        .navbar {
+        .navbar{
 
-            width: 100%;
+            width:100%;
 
-            padding: 18px 70px;
+            padding:18px 70px;
 
-            display: flex;
+            display:flex;
 
-            justify-content: space-between;
+            justify-content:space-between;
 
-            align-items: center;
+            align-items:center;
 
-            background: rgba(255, 255, 255, 0.92);
+            background:rgba(255,255,255,0.92);
 
-            backdrop-filter: blur(14px);
+            backdrop-filter:blur(14px);
 
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            box-shadow:0 4px 30px rgba(0,0,0,0.08);
 
-            position: sticky;
+            position:sticky;
 
-            top: 0;
+            top:0;
 
-            z-index: 999;
-
-        }
-
-        .logo-section {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 16px;
+            z-index:999;
 
         }
 
-        .logo-section img {
+        .logo-section{
 
-            width: 75px;
-            height: 75px;
+            display:flex;
 
-            object-fit: contain;
+            align-items:center;
 
-        }
-
-        .logo-text h2 {
-
-            color: #7c2d12;
-
-            font-size: 30px;
-
-            font-weight: 700;
+            gap:16px;
 
         }
 
-        .logo-text p {
+        .logo-section img{
 
-            color: #6b7280;
+            width:75px;
+            height:75px;
 
-            font-size: 14px;
-
-            margin-top: 3px;
-
-        }
-
-        .home-btn {
-
-            padding: 13px 25px;
-
-            border-radius: 14px;
-
-            background: linear-gradient(135deg,
-                    #f97316,
-                    #ea580c);
-
-            color: white;
-
-            text-decoration: none;
-
-            font-weight: 600;
-
-            transition: 0.3s;
-
-            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.2);
+            object-fit:contain;
 
         }
 
-        .home-btn:hover {
+        .logo-text h2{
 
-            transform: translateY(-3px);
+            color:#7c2d12;
+
+            font-size:30px;
+
+            font-weight:700;
+
+        }
+
+        .logo-text p{
+
+            color:#6b7280;
+
+            font-size:14px;
+
+            margin-top:3px;
+
+        }
+
+        .home-btn{
+
+            padding:13px 25px;
+
+            border-radius:14px;
+
+            background:linear-gradient(
+                135deg,
+                #f97316,
+                #ea580c
+            );
+
+            color:white;
+
+            text-decoration:none;
+
+            font-weight:600;
+
+            transition:0.3s;
+
+            box-shadow:0 10px 25px rgba(249,115,22,0.2);
+
+        }
+
+        .home-btn:hover{
+
+            transform:translateY(-3px);
 
         }
 
         /* ================= MAIN ================= */
 
-        .main-container {
+        .main-container{
 
-            width: 75%;
+            width:75%;
 
-            margin: 50px auto;
+            margin:50px auto;
 
         }
 
         /* ================= HERO ================= */
 
-        .hero-section {
+        .hero-section{
 
-            background: rgba(255, 255, 255, 0.92);
+            background:rgba(255,255,255,0.92);
 
-            border-radius: 35px;
+            border-radius:35px;
 
-            padding: 60px;
+            padding:60px;
 
-            text-align: center;
+            text-align:center;
 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            box-shadow:0 20px 50px rgba(0,0,0,0.08);
 
-            margin-bottom: 45px;
+            margin-bottom:45px;
 
-            position: relative;
+            position:relative;
 
-            overflow: hidden;
-
-        }
-
-        .hero-section::before {
-
-            content: '';
-
-            position: absolute;
-
-            width: 280px;
-            height: 280px;
-
-            background: rgba(249, 115, 22, 0.08);
-
-            border-radius: 50%;
-
-            top: -120px;
-            right: -120px;
+            overflow:hidden;
 
         }
 
-        .hero-section h1 {
+        .hero-section::before{
 
-            font-size: 48px;
+            content:'';
 
-            color: #7c2d12;
+            position:absolute;
 
-            margin-bottom: 18px;
+            width:280px;
+            height:280px;
 
-            position: relative;
+            background:rgba(249,115,22,0.08);
 
-            z-index: 2;
+            border-radius:50%;
+
+            top:-120px;
+            right:-120px;
 
         }
 
-        .hero-section p {
+        .hero-section h1{
 
-            color: #6b7280;
+            font-size:48px;
 
-            font-size: 17px;
+            color:#7c2d12;
 
-            line-height: 34px;
+            margin-bottom:18px;
 
-            max-width: 850px;
+            position:relative;
 
-            margin: auto;
+            z-index:2;
 
-            position: relative;
+        }
 
-            z-index: 2;
+        .hero-section p{
+
+            color:#6b7280;
+
+            font-size:17px;
+
+            line-height:34px;
+
+            max-width:850px;
+
+            margin:auto;
+
+            position:relative;
+
+            z-index:2;
 
         }
 
         /* ================= FESTIVAL LIST ================= */
 
-        .festival-list {
+        .festival-list{
 
-            display: flex;
+            display:flex;
 
-            flex-direction: column;
+            flex-direction:column;
 
-            gap: 30px;
+            gap:30px;
 
         }
 
         /* ================= FESTIVAL CARD ================= */
 
-        .festival-card {
+        .festival-card{
 
-            background: rgba(255, 255, 255, 0.95);
+            background:rgba(255,255,255,0.95);
 
-            border-radius: 30px;
+            border-radius:30px;
 
-            overflow: hidden;
+            overflow:hidden;
 
-            display: flex;
+            display:flex;
 
-            gap: 30px;
+            gap:30px;
 
-            padding: 30px;
+            padding:30px;
 
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            box-shadow:0 15px 40px rgba(0,0,0,0.08);
 
-            transition: 0.3s;
+            transition:0.3s;
 
-            align-items: center;
-
-        }
-
-        .festival-card:hover {
-
-            transform: translateY(-5px);
+            align-items:center;
 
         }
 
-        .festival-card img {
+        .festival-card:hover{
 
-            width: 320px;
-
-            height: 220px;
-
-            object-fit: cover;
-
-            border-radius: 24px;
+            transform:translateY(-5px);
 
         }
 
-        .festival-content {
+        .festival-card img{
 
-            flex: 1;
+            width:320px;
 
-        }
+            height:220px;
 
-        .festival-date {
+            object-fit:cover;
 
-            display: inline-block;
-
-            background: #fff7ed;
-
-            color: #ea580c;
-
-            padding: 9px 18px;
-
-            border-radius: 50px;
-
-            font-size: 13px;
-
-            font-weight: 700;
-
-            margin-bottom: 18px;
+            border-radius:24px;
 
         }
 
-        .festival-content h2 {
+        .festival-content{
 
-            color: #7c2d12;
-
-            font-size: 30px;
-
-            margin-bottom: 15px;
+            flex:1;
 
         }
 
-        .festival-content p {
+        .festival-date{
 
-            color: #6b7280;
+            display:inline-block;
 
-            font-size: 15px;
+            background:#fff7ed;
 
-            line-height: 30px;
+            color:#ea580c;
 
-            margin-bottom: 20px;
+            padding:9px 18px;
 
-        }
+            border-radius:50px;
 
-        .festival-footer {
+            font-size:13px;
 
-            display: flex;
+            font-weight:700;
 
-            justify-content: space-between;
-
-            align-items: center;
-
-            flex-wrap: wrap;
-
-            gap: 15px;
+            margin-bottom:18px;
 
         }
 
-        .festival-location {
+        .festival-content h2{
 
-            color: #9a3412;
+            color:#7c2d12;
 
-            font-weight: 600;
+            font-size:30px;
 
-            font-size: 14px;
-
-        }
-
-        .festival-btn {
-
-            padding: 11px 22px;
-
-            border-radius: 12px;
-
-            background: linear-gradient(135deg,
-                    #f97316,
-                    #ea580c);
-
-            color: white;
-
-            text-decoration: none;
-
-            font-size: 14px;
-
-            font-weight: 600;
-
-            transition: 0.3s;
+            margin-bottom:15px;
 
         }
 
-        .festival-btn:hover {
+        .festival-content p{
 
-            transform: translateY(-2px);
+            color:#6b7280;
+
+            font-size:15px;
+
+            line-height:30px;
+
+            margin-bottom:20px;
+
+        }
+
+        .festival-footer{
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            flex-wrap:wrap;
+
+            gap:15px;
+
+        }
+
+        .festival-location{
+
+            color:#9a3412;
+
+            font-weight:600;
+
+            font-size:14px;
+
+        }
+
+        .festival-btn{
+
+            padding:11px 22px;
+
+            border-radius:12px;
+
+            border:none;
+
+            background:linear-gradient(
+                135deg,
+                #f97316,
+                #ea580c
+            );
+
+            color:white;
+
+            font-size:14px;
+
+            font-weight:600;
+
+            cursor:pointer;
+
+            transition:0.3s;
+
+        }
+
+        .festival-btn:hover{
+
+            transform:translateY(-2px);
+
+        }
+
+        /* ================= POPUP ================= */
+
+        .popup-overlay{
+
+            position:fixed;
+
+            top:0;
+            left:0;
+
+            width:100%;
+            height:100%;
+
+            background:rgba(0,0,0,0.6);
+
+            display:none;
+
+            justify-content:center;
+
+            align-items:center;
+
+            z-index:99999;
+
+            padding:20px;
+
+        }
+
+        .popup-box{
+
+            width:100%;
+
+            max-width:650px;
+
+            background:white;
+
+            border-radius:30px;
+
+            padding:40px;
+
+            position:relative;
+
+            animation:popupShow 0.3s ease;
+
+        }
+
+        @keyframes popupShow{
+
+            from{
+
+                transform:scale(0.8);
+
+                opacity:0;
+
+            }
+
+            to{
+
+                transform:scale(1);
+
+                opacity:1;
+
+            }
+
+        }
+
+        .close-btn{
+
+            position:absolute;
+
+            top:18px;
+            right:25px;
+
+            font-size:30px;
+
+            cursor:pointer;
+
+            color:#7c2d12;
+
+            font-weight:bold;
+
+        }
+
+        .popup-box h2{
+
+            color:#7c2d12;
+
+            font-size:34px;
+
+            margin-bottom:25px;
+
+        }
+
+        .popup-info{
+
+            background:#fff7ed;
+
+            padding:22px;
+
+            border-radius:20px;
+
+            margin-bottom:25px;
+
+        }
+
+        .popup-info p{
+
+            margin-bottom:12px;
+
+            color:#444;
+
+            line-height:28px;
+
+        }
+
+        .popup-description p{
+
+            color:#555;
+
+            line-height:32px;
+
+            font-size:16px;
 
         }
 
         /* ================= MOBILE ================= */
 
-        @media(max-width:992px) {
+        @media(max-width:992px){
 
-            .navbar {
+            .navbar{
 
-                padding: 20px;
+                padding:20px;
 
-                flex-direction: column;
+                flex-direction:column;
 
-                gap: 20px;
-
-            }
-
-            .main-container {
-
-                width: 92%;
+                gap:20px;
 
             }
 
-            .hero-section {
+            .main-container{
 
-                padding: 40px 25px;
-
-            }
-
-            .hero-section h1 {
-
-                font-size: 38px;
+                width:92%;
 
             }
 
-            .festival-card {
+            .hero-section{
 
-                flex-direction: column;
+                padding:40px 25px;
 
             }
 
-            .festival-card img {
+            .hero-section h1{
 
-                width: 100%;
+                font-size:38px;
+
+            }
+
+            .festival-card{
+
+                flex-direction:column;
+
+            }
+
+            .festival-card img{
+
+                width:100%;
+
+            }
+
+        }
+
+        @media(max-width:600px){
+
+            .hero-section h1{
+
+                font-size:30px;
+
+            }
+
+            .logo-text h2{
+
+                font-size:24px;
+
+            }
+
+            .popup-box{
+
+                padding:30px 22px;
+
+            }
+
+            .popup-box h2{
+
+                font-size:28px;
 
             }
 
         }
 
-        @media(max-width:600px) {
-
-            .hero-section h1 {
-
-                font-size: 30px;
-
-            }
-
-            .logo-text h2 {
-
-                font-size: 24px;
-
-            }
-
-        }
     </style>
 
 </head>
@@ -457,7 +602,7 @@
         <div class="logo-section">
 
             <img src="{% static 'logo.png' %}"
-                alt="Temple Logo">
+                 alt="Temple Logo">
 
             <div class="logo-text">
 
@@ -478,7 +623,7 @@
         </div>
 
         <a href="{% url 'home' %}"
-            class="home-btn">
+           class="home-btn">
 
             Back To Home
 
@@ -502,9 +647,9 @@
 
             <p>
 
-                Participate in the sacred rituals, divine processions,
-                special poojas and grand spiritual celebrations inspired
-                by Tirumala Tirupati Devasthanams traditions.
+                Participate in sacred rituals, divine processions,
+                spiritual programs and grand temple celebrations
+                inspired by Tirumala traditions.
 
             </p>
 
@@ -518,8 +663,8 @@
 
             <div class="festival-card">
 
-                <img src="{% static 'festival1.jpg' %}"
-                    alt="Festival">
+                <img src="{% static 'f1.png' %}"
+                     alt="Festival">
 
                 <div class="festival-content">
 
@@ -537,10 +682,8 @@
 
                     <p>
 
-                        Sacred Hanuman Jayanthi celebrations featuring
-                        special Abhishekam rituals, devotional chanting,
-                        spiritual music and temple processions dedicated
-                        to Lord Hanuman.
+                        Special Abhishekam rituals and spiritual
+                        celebrations dedicated to Lord Hanuman.
 
                     </p>
 
@@ -552,12 +695,18 @@
 
                         </span>
 
-                        <a href="#"
-                            class="festival-btn">
+                        <button class="festival-btn"
+                                onclick="openPopup(
+                                'Hanuman Jayanthi Celebrations',
+                                '12 May 2026',
+                                'Special Abhishekam rituals, devotional bhajans, Veda chanting, spiritual programs and grand temple procession dedicated to Lord Hanuman.',
+                                'Morning 5:00 AM to Night 9:00 PM',
+                                'Tirumala Temple Main Mandapam'
+                                )">
 
                             View Details
 
-                        </a>
+                        </button>
 
                     </div>
 
@@ -569,8 +718,8 @@
 
             <div class="festival-card">
 
-                <img src="{% static 'festival2.jpg' %}"
-                    alt="Festival">
+                <img src="{% static 'f2.png' %}"
+                     alt="Festival">
 
                 <div class="festival-content">
 
@@ -588,10 +737,8 @@
 
                     <p>
 
-                        Commencement of the 10-day Nammalwar Utsavams
-                        with Vedic chanting, divine rituals, temple
-                        decorations and special poojas honoring
-                        Saint Nammalwar.
+                        Commencement of the 10-day sacred
+                        Nammalwar Utsavams celebrations.
 
                     </p>
 
@@ -603,12 +750,18 @@
 
                         </span>
 
-                        <a href="#"
-                            class="festival-btn">
+                        <button class="festival-btn"
+                                onclick="openPopup(
+                                'Nammalwar Utsavams',
+                                '21 May 2026',
+                                'Grand 10-day spiritual festival with Vedic chanting, divine poojas, temple decorations and devotional events honoring Saint Nammalwar.',
+                                'Daily 6:00 AM to 8:30 PM',
+                                'Srivari Temple Complex'
+                                )">
 
                             View Details
 
-                        </a>
+                        </button>
 
                     </div>
 
@@ -620,8 +773,8 @@
 
             <div class="festival-card">
 
-                <img src="{% static 'festival3.jpg' %}"
-                    alt="Festival">
+                <img src="{% static 'f3.png' %}"
+                     alt="Festival">
 
                 <div class="festival-content">
 
@@ -639,10 +792,8 @@
 
                     <p>
 
-                        Grand finale celebration of the Nammalwar
-                        Utsavam featuring devotional programs,
-                        sacred rituals and spiritual gatherings
-                        attended by thousands of devotees.
+                        Grand finale celebration of the
+                        Nammalwar Utsavam.
 
                     </p>
 
@@ -654,12 +805,18 @@
 
                         </span>
 
-                        <a href="#"
-                            class="festival-btn">
+                        <button class="festival-btn"
+                                onclick="openPopup(
+                                'Nammalwar Sattumora',
+                                '30 May 2026',
+                                'Special concluding celebration featuring devotional singing, spiritual gatherings, temple rituals and sacred prasadam distribution.',
+                                'Morning 7:00 AM onwards',
+                                'Temple Mandapam Hall'
+                                )">
 
                             View Details
 
-                        </a>
+                        </button>
 
                     </div>
 
@@ -671,8 +828,8 @@
 
             <div class="festival-card">
 
-                <img src="{% static 'festival4.jpg' %}"
-                    alt="Festival">
+                <img src="{% static 'f4.png' %}"
+                     alt="Festival">
 
                 <div class="festival-content">
 
@@ -690,10 +847,8 @@
 
                     <p>
 
-                        Divine monthly evening procession of Lord
-                        Malayappa Swamy on Garuda Vahanam with
-                        devotional singing, temple lights and
-                        grand spiritual celebrations.
+                        Divine evening procession of Lord
+                        Malayappa Swamy on Garuda Vahanam.
 
                     </p>
 
@@ -705,12 +860,18 @@
 
                         </span>
 
-                        <a href="#"
-                            class="festival-btn">
+                        <button class="festival-btn"
+                                onclick="openPopup(
+                                'Pournami Garuda Vahana Seva',
+                                '31 May 2026',
+                                'Monthly sacred Garuda Vahana procession with temple lights, devotional chanting, bhajans and grand spiritual atmosphere.',
+                                'Evening 6:30 PM',
+                                'Temple Mada Streets'
+                                )">
 
                             View Details
 
-                        </a>
+                        </button>
 
                     </div>
 
@@ -722,8 +883,8 @@
 
             <div class="festival-card">
 
-                <img src="{% static 'festival5.jpg' %}"
-                    alt="Festival">
+                <img src="{% static 'f5.png' %}"
+                     alt="Festival">
 
                 <div class="festival-content">
 
@@ -741,10 +902,8 @@
 
                     <p>
 
-                        Beginning of the main annual Tirupati
-                        festival celebrations with special darshan,
-                        cultural events, sacred rituals and
-                        large-scale spiritual gatherings.
+                        Beginning of the grand annual
+                        Tirupati festival celebrations.
 
                     </p>
 
@@ -756,12 +915,18 @@
 
                         </span>
 
-                        <a href="#"
-                            class="festival-btn">
+                        <button class="festival-btn"
+                                onclick="openPopup(
+                                'Tirupati Festival Commencement',
+                                '15 September 2026',
+                                'Main annual festival opening ceremony featuring cultural programs, spiritual rituals, temple processions and special darshan.',
+                                'Full Day Celebration',
+                                'Tirupati Temple Campus'
+                                )">
 
                             View Details
 
-                        </a>
+                        </button>
 
                     </div>
 
@@ -772,6 +937,85 @@
         </div>
 
     </div>
+
+    <!-- POPUP -->
+
+    <div class="popup-overlay"
+         id="popupOverlay">
+
+        <div class="popup-box">
+
+            <span class="close-btn"
+                  onclick="closePopup()">
+
+                ✕
+
+            </span>
+
+            <h2 id="popupTitle"></h2>
+
+            <div class="popup-info">
+
+                <p>
+
+                    <strong>Date :</strong>
+                    <span id="popupDate"></span>
+
+                </p>
+
+                <p>
+
+                    <strong>Location :</strong>
+                    <span id="popupLocation"></span>
+
+                </p>
+
+                <p>
+
+                    <strong>Timing :</strong>
+                    <span id="popupTime"></span>
+
+                </p>
+
+            </div>
+
+            <div class="popup-description">
+
+                <p id="popupDescription"></p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function openPopup(title, date, description, time, location) {
+
+            document.getElementById("popupTitle").innerText = title;
+
+            document.getElementById("popupDate").innerText = date;
+
+            document.getElementById("popupDescription").innerText = description;
+
+            document.getElementById("popupTime").innerText = time;
+
+            document.getElementById("popupLocation").innerText = location;
+
+            document.getElementById("popupOverlay").style.display = "flex";
+
+        }
+
+        function closePopup() {
+
+            document.getElementById("popupOverlay").style.display = "none";
+
+        }
+
+    </script>
 
 </body>
 

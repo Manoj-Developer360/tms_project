@@ -16,6 +16,16 @@
           type="image/png"
           href="{% static 'logo.png' %}">
 
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
     <style>
 
         *{
@@ -27,25 +37,32 @@
 
         body{
 
-            background:linear-gradient(
-                135deg,
-                #fff5e6,
-                #ffe0b3
-            );
+            background:
+                linear-gradient(
+                    rgba(255,247,237,0.92),
+                    rgba(255,247,237,0.92)
+                ),
+                url("{% static 'temple-bg.jpg' %}");
+
+            background-size:cover;
+
+            background-position:center;
+
+            background-attachment:fixed;
 
             min-height:100vh;
 
+            color:#1f2937;
+
         }
 
-        /* NAVBAR */
+        /* ================= NAVBAR ================= */
 
-        nav{
+        .navbar{
 
             width:100%;
 
-            background:white;
-
-            padding:15px 50px;
+            padding:18px 70px;
 
             display:flex;
 
@@ -53,7 +70,17 @@
 
             align-items:center;
 
-            box-shadow:0 5px 20px rgba(0,0,0,0.08);
+            background:rgba(255,255,255,0.92);
+
+            backdrop-filter:blur(14px);
+
+            box-shadow:0 4px 30px rgba(0,0,0,0.08);
+
+            position:sticky;
+
+            top:0;
+
+            z-index:999;
 
         }
 
@@ -63,142 +90,271 @@
 
             align-items:center;
 
-            gap:15px;
+            gap:16px;
 
         }
 
         .logo-section img{
 
-            width:70px;
-            height:70px;
+            width:75px;
+            height:75px;
+
+            object-fit:contain;
 
         }
 
-        .logo-section h2{
+        .logo-text h2{
 
-            color:#8b2500;
+            color:#7c2d12;
 
-            font-size:28px;
+            font-size:30px;
+
+            font-weight:700;
 
         }
 
-        .logo-section p{
+        .logo-text p{
 
-            color:#666;
+            color:#6b7280;
 
             font-size:14px;
+
+            margin-top:3px;
 
         }
 
         .back-btn{
 
-            text-decoration:none;
+            padding:13px 24px;
 
-            background:#ea580c;
+            border-radius:14px;
+
+            background:linear-gradient(
+                135deg,
+                #f97316,
+                #ea580c
+            );
 
             color:white;
 
-            padding:12px 20px;
+            text-decoration:none;
 
-            border-radius:12px;
-
-            font-size:15px;
+            font-weight:600;
 
             transition:0.3s;
+
+            box-shadow:0 10px 25px rgba(249,115,22,0.2);
 
         }
 
         .back-btn:hover{
 
-            background:#c2410c;
+            transform:translateY(-3px);
 
         }
 
-        /* MAIN */
+        /* ================= MAIN ================= */
 
         .main-container{
 
+            width:75%;
+
+            margin:50px auto;
+
+        }
+
+        /* ================= BOOKING CARD ================= */
+
+        .booking-card{
+
             width:100%;
+
+            background:rgba(255,255,255,0.93);
+
+            border-radius:35px;
+
+            padding:50px;
+
+            box-shadow:0 20px 50px rgba(0,0,0,0.08);
+
+            position:relative;
+
+            overflow:hidden;
+
+        }
+
+        .booking-card::before{
+
+            content:'';
+
+            position:absolute;
+
+            width:300px;
+            height:300px;
+
+            background:rgba(249,115,22,0.08);
+
+            border-radius:50%;
+
+            top:-130px;
+            right:-120px;
+
+        }
+
+        /* ================= TOP ================= */
+
+        .booking-top{
 
             display:flex;
 
-            justify-content:center;
+            justify-content:space-between;
 
             align-items:center;
 
-            padding:50px 20px;
+            flex-wrap:wrap;
+
+            gap:25px;
+
+            margin-bottom:40px;
+
+            position:relative;
+
+            z-index:2;
 
         }
 
-        .booking-box{
+        .booking-left{
 
-            width:100%;
+            display:flex;
 
-            max-width:550px;
+            align-items:center;
+
+            gap:25px;
+
+            flex-wrap:wrap;
+
+        }
+
+        .booking-left img{
+
+            width:120px;
+            height:120px;
+
+            border-radius:50%;
 
             background:white;
 
-            padding:40px;
+            padding:10px;
 
-            border-radius:30px;
+            border:5px solid #f59e0b;
 
-            box-shadow:0 20px 50px rgba(0,0,0,0.1);
-
-        }
-
-        .booking-box img{
-
-            width:120px;
-
-            display:block;
-
-            margin:auto;
-
-            margin-bottom:20px;
+            box-shadow:0 15px 30px rgba(249,115,22,0.2);
 
         }
 
-        .booking-box h1{
+        .booking-text h1{
 
-            text-align:center;
+            color:#7c2d12;
 
-            color:#9a3412;
+            font-size:40px;
 
-            margin-bottom:10px;
+            margin-bottom:12px;
+
+            font-weight:700;
 
         }
 
-        .booking-box p{
+        .booking-text p{
 
-            text-align:center;
+            color:#6b7280;
 
-            color:#666;
+            line-height:30px;
+
+            max-width:650px;
+
+            font-size:16px;
+
+        }
+
+        .seva-badge{
+
+            background:linear-gradient(
+                135deg,
+                #f59e0b,
+                #ea580c
+            );
+
+            color:white;
+
+            padding:14px 25px;
+
+            border-radius:40px;
+
+            font-size:14px;
+
+            font-weight:700;
+
+            box-shadow:0 10px 25px rgba(249,115,22,0.25);
+
+        }
+
+        /* ================= MESSAGE ================= */
+
+        .message{
+
+            background:#ecfdf5;
+
+            color:#166534;
+
+            padding:16px;
+
+            border-radius:16px;
 
             margin-bottom:30px;
 
+            text-align:center;
+
+            font-weight:600;
+
+            border:1px solid #bbf7d0;
+
         }
 
-        /* FORM */
+        /* ================= FORM ================= */
 
         form{
 
-            width:100%;
+            position:relative;
+
+            z-index:2;
+
+        }
+
+        .form-grid{
+
+            display:grid;
+
+            grid-template-columns:repeat(2,1fr);
+
+            gap:25px;
 
         }
 
         .input-box{
 
-            margin-bottom:20px;
+            display:flex;
+
+            flex-direction:column;
 
         }
 
         .input-box label{
 
-            display:block;
+            margin-bottom:10px;
 
-            margin-bottom:8px;
+            color:#7c2d12;
 
-            color:#444;
+            font-size:15px;
 
             font-weight:600;
 
@@ -209,19 +365,21 @@
 
             width:100%;
 
-            padding:15px;
+            padding:16px 18px;
 
-            border-radius:14px;
+            border-radius:16px;
 
             border:2px solid #fed7aa;
 
             outline:none;
 
+            background:white;
+
             font-size:15px;
 
             transition:0.3s;
 
-            background:white;
+            color:#374151;
 
         }
 
@@ -230,25 +388,27 @@
 
             border-color:#ea580c;
 
-            box-shadow:0 0 10px rgba(234,88,12,0.2);
+            box-shadow:0 0 15px rgba(234,88,12,0.15);
 
         }
 
-        /* BUTTON */
+        /* ================= BUTTON ================= */
 
         .submit-btn{
 
             width:100%;
 
-            padding:16px;
+            margin-top:35px;
+
+            padding:18px;
 
             border:none;
 
-            border-radius:14px;
+            border-radius:18px;
 
             background:linear-gradient(
                 135deg,
-                #ea580c,
+                #f97316,
                 #c2410c
             );
 
@@ -256,13 +416,13 @@
 
             font-size:17px;
 
-            font-weight:600;
+            font-weight:700;
 
             cursor:pointer;
 
             transition:0.3s;
 
-            margin-top:10px;
+            box-shadow:0 15px 30px rgba(234,88,12,0.25);
 
         }
 
@@ -270,45 +430,53 @@
 
             transform:translateY(-3px);
 
-            box-shadow:0 10px 25px rgba(0,0,0,0.15);
-
         }
 
-        /* MESSAGE */
+        /* ================= MOBILE ================= */
 
-        .message{
+        @media(max-width:992px){
 
-            background:#ecfdf5;
+            .navbar{
 
-            color:#166534;
-
-            padding:14px;
-
-            border-radius:12px;
-
-            margin-bottom:20px;
-
-            text-align:center;
-
-            font-weight:600;
-
-        }
-
-        /* MOBILE */
-
-        @media(max-width:768px){
-
-            nav{
-
-                padding:15px 20px;
+                padding:20px;
 
                 flex-direction:column;
 
-                gap:15px;
+                gap:20px;
 
             }
 
-            .logo-section{
+            .main-container{
+
+                width:92%;
+
+            }
+
+            .booking-card{
+
+                padding:35px 25px;
+
+            }
+
+            .booking-top{
+
+                flex-direction:column;
+
+                align-items:flex-start;
+
+            }
+
+            .form-grid{
+
+                grid-template-columns:1fr;
+
+            }
+
+        }
+
+        @media(max-width:600px){
+
+            .booking-left{
 
                 flex-direction:column;
 
@@ -316,9 +484,23 @@
 
             }
 
-            .booking-box{
+            .booking-top{
 
-                padding:25px;
+                align-items:center;
+
+                text-align:center;
+
+            }
+
+            .booking-text h1{
+
+                font-size:32px;
+
+            }
+
+            .logo-text h2{
+
+                font-size:24px;
 
             }
 
@@ -330,16 +512,16 @@
 
 <body>
 
-    <!-- NAVBAR -->
+    <!-- ================= NAVBAR ================= -->
 
-    <nav>
+    <div class="navbar">
 
         <div class="logo-section">
 
             <img src="{% static 'logo.png' %}"
                  alt="Temple Logo">
 
-            <div>
+            <div class="logo-text">
 
                 <h2>
 
@@ -364,30 +546,52 @@
 
         </a>
 
-    </nav>
+    </div>
 
-    <!-- MAIN CONTENT -->
+    <!-- ================= MAIN ================= -->
 
     <div class="main-container">
 
-        <div class="booking-box">
+        <div class="booking-card">
 
-            <img src="{% static 'logo.png' %}"
-                 alt="Temple Logo">
+            <!-- TOP -->
 
-            <h1>
+            <div class="booking-top">
 
-                Seva Booking
+                <div class="booking-left">
 
-            </h1>
+                    <img src="{% static 'logo.png' %}"
+                         alt="Temple Logo">
 
-            <p>
+                    <div class="booking-text">
 
-                Book temple seva online with your preferred timing
+                        <h1>
 
-            </p>
+                            Seva Booking
 
-            <!-- MESSAGES -->
+                        </h1>
+
+                        <p>
+
+                            Book your preferred seva online
+                            and receive instant confirmation
+                            for your spiritual temple services.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="seva-badge">
+
+                    Temple Seva
+
+                </div>
+
+            </div>
+
+            <!-- MESSAGE -->
 
             {% if messages %}
 
@@ -409,138 +613,121 @@
 
                 {% csrf_token %}
 
-                <div class="input-box">
+                <div class="form-grid">
 
-                    <label>
+                    <!-- FULL NAME -->
 
-                        Full Name
+                    <div class="input-box">
 
-                    </label>
+                        <label>
 
-                    <input type="text"
-                           name="full_name"
-                           placeholder="Enter Full Name"
-                           required>
+                            Full Name
 
-                </div>
+                        </label>
 
-                <div class="input-box">
+                        <input type="text"
+                               name="full_name"
+                               placeholder="Enter Full Name"
+                               required>
 
-                    <label>
+                    </div>
 
-                        Mobile Number
+                    <!-- MOBILE -->
 
-                    </label>
+                    <div class="input-box">
 
-                    <input type="text"
-                           name="mobile"
-                           placeholder="Enter Mobile Number"
-                           maxlength="10"
-                           required>
+                        <label>
 
-                </div>
+                            Mobile Number
 
-                <div class="input-box">
+                        </label>
 
-                    <label>
+                        <input type="text"
+                               name="mobile"
+                               placeholder="Enter Mobile Number"
+                               maxlength="10"
+                               required>
 
-                        Select Seva
+                    </div>
 
-                    </label>
+                    <!-- SEVA WITH TIME -->
 
-                    <select name="seva_name" required>
+                    <div class="input-box">
 
-                        <option value="">
+                        <label>
 
                             Select Seva
 
-                        </option>
+                        </label>
 
-                        <option>
+                        <select name="seva_name"
+                                required>
 
-                            Suprabhata Seva
+                            <option value="">
 
-                        </option>
+                                Select Seva & Time
 
-                        <option>
+                            </option>
 
-                            Archana
+                            <option value="Suprabhata Seva - 3:00 AM">
 
-                        </option>
+                                Suprabhata Seva — 3:00 AM
 
-                        <option>
+                            </option>
 
-                            Kalyanotsavam
+                            <option value="Thomala Seva - 4:00 AM">
 
-                        </option>
+                                Thomala Seva — 4:00 AM
 
-                        <option>
+                            </option>
 
-                            Thomala Seva
+                            <option value="Archana - 4:30 AM">
 
-                        </option>
+                                Archana — 4:30 AM
 
-                    </select>
+                            </option>
 
-                </div>
+                            <option value="Kalyanotsavam - 10:00 AM">
 
-                <div class="input-box">
+                                Kalyanotsavam — 10:00 AM
 
-                    <label>
+                            </option>
 
-                        Select Seva Time
+                            <option value="Unjal Seva - 7:00 PM">
 
-                    </label>
+                                Unjal Seva — 7:00 PM
 
-                    <select name="seva_time" required>
+                            </option>
 
-                        <option value="">
+                            <option value="Sahasra Deepalankara Seva - 5:30 PM">
 
-                            Select Time
+                                Sahasra Deepalankara Seva — 5:30 PM
 
-                        </option>
+                            </option>
 
-                        <option>
+                        </select>
 
-                            6AM
+                    </div>
 
-                        </option>
+                    <!-- DATE -->
 
-                        <option>
+                    <div class="input-box">
 
-                            9AM
+                        <label>
 
-                        </option>
+                            Seva Date
 
-                        <option>
+                        </label>
 
-                            12PM
+                        <input type="date"
+                               name="seva_date"
+                               required>
 
-                        </option>
-
-                        <option>
-
-                            6PM
-
-                        </option>
-
-                    </select>
+                    </div>
 
                 </div>
 
-                <div class="input-box">
-
-                    <label>
-
-                        Select Seva Date
-
-                    </label>
-
-                    <input type="date"
-                           name="seva_date"
-                           required>
-
-                </div>
+                <!-- BUTTON -->
 
                 <button type="submit"
                         class="submit-btn">
