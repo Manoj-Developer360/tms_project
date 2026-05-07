@@ -8,133 +8,388 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0">
 
-    <title>{{ type }}</title>
+    <title>{{ type }} - Srivari Seva Portal</title>
+
+    <link rel="icon"
+        type="image/png"
+        href="{% static 'logo.png' %}">
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Poppins',sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        body{
+        body {
 
-            background:#fff7ed;
+            min-height: 100vh;
 
-            padding:40px;
+            padding: 50px 20px;
+
+            background:
+                linear-gradient(rgba(255, 247, 237, 0.92),
+                    rgba(255, 247, 237, 0.92)),
+                url("{% static 'temple-bg.jpg' %}");
+
+            background-size: cover;
+
+            background-position: center;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
         }
 
-        .ticket-container{
+        /* TICKET CONTAINER */
 
-            max-width:700px;
+        .ticket-container {
 
-            margin:auto;
+            width: 100%;
 
-            background:white;
+            max-width: 850px;
 
-            border-radius:25px;
+            background: rgba(255, 255, 255, 0.96);
 
-            overflow:hidden;
+            border-radius: 35px;
 
-            box-shadow:0 15px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+
+            position: relative;
+
         }
 
-        .ticket-header{
+        /* HEADER */
 
-            background:linear-gradient(
-                135deg,
-                #ea580c,
-                #c2410c
-            );
+        .ticket-header {
 
-            color:white;
+            background: linear-gradient(135deg,
+                    #f97316,
+                    #c2410c);
 
-            text-align:center;
+            padding: 45px 40px;
 
-            padding:35px;
+            text-align: center;
+
+            color: white;
+
+            position: relative;
+
+            overflow: hidden;
+
         }
 
-        .ticket-header img{
+        .ticket-header::before {
 
-            width:100px;
+            content: '';
 
-            margin-bottom:15px;
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border-radius: 50%;
+
+            top: -120px;
+            right: -100px;
+
         }
 
-        .ticket-header h1{
+        .ticket-header img {
 
-            font-size:34px;
+            width: 110px;
 
-            margin-bottom:10px;
+            height: 110px;
+
+            object-fit: contain;
+
+            margin-bottom: 18px;
+
+            background: rgba(255, 255, 255, 0.12);
+
+            padding: 12px;
+
+            border-radius: 50%;
+
+            position: relative;
+
+            z-index: 2;
+
         }
 
-        .ticket-body{
+        .ticket-header h1 {
 
-            padding:40px;
+            font-size: 38px;
+
+            margin-bottom: 10px;
+
+            font-weight: 700;
+
+            position: relative;
+
+            z-index: 2;
+
         }
 
-        .info-box{
+        .ticket-header p {
 
-            background:#fffaf5;
+            font-size: 15px;
 
-            border:2px solid #fed7aa;
+            opacity: 0.95;
 
-            border-radius:16px;
+            letter-spacing: 1px;
 
-            padding:18px;
+            position: relative;
 
-            margin-bottom:18px;
+            z-index: 2;
+
         }
 
-        .info-box h3{
+        /* BODY */
 
-            color:#9a3412;
+        .ticket-body {
 
-            margin-bottom:10px;
+            padding: 45px;
+
         }
 
-        .info-box p{
+        /* INFO CARD */
 
-            color:#444;
+        .info-card {
 
-            line-height:28px;
+            background: linear-gradient(145deg,
+                    #fffaf5,
+                    #ffffff);
+
+            border: 2px solid #fed7aa;
+
+            border-radius: 28px;
+
+            padding: 35px;
+
+            margin-bottom: 30px;
+
         }
 
-        .download-btn{
+        .info-title {
 
-            width:100%;
+            color: #9a3412;
 
-            padding:16px;
+            font-size: 28px;
 
-            border:none;
+            margin-bottom: 30px;
 
-            border-radius:14px;
+            font-weight: 700;
 
-            background:#16a34a;
+            text-align: center;
 
-            color:white;
-
-            font-size:17px;
-
-            font-weight:600;
-
-            cursor:pointer;
-
-            margin-top:20px;
         }
 
-        @media print{
+        /* INFO GRID */
 
-            .download-btn{
+        .info-grid {
 
-                display:none;
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 22px;
+
+        }
+
+        .info-box {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            border: 1px solid #fde7c7;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+
+        }
+
+        .info-box h4 {
+
+            color: #9a3412;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+
+            font-weight: 600;
+
+        }
+
+        .info-box p {
+
+            color: #111827;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            line-height: 28px;
+
+            word-break: break-word;
+
+        }
+
+        /* STATUS */
+
+        .status-box {
+
+            margin-top: 30px;
+
+            text-align: center;
+
+        }
+
+        .status {
+
+            display: inline-block;
+
+            padding: 12px 28px;
+
+            border-radius: 50px;
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+        }
+
+        /* BUTTON */
+
+        .download-btn {
+
+            width: 100%;
+
+            padding: 18px;
+
+            border: none;
+
+            border-radius: 18px;
+
+            background: linear-gradient(135deg,
+                    #16a34a,
+                    #15803d);
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+
+            box-shadow: 0 15px 30px rgba(22, 163, 74, 0.2);
+
+        }
+
+        .download-btn:hover {
+
+            transform: translateY(-4px);
+
+            box-shadow: 0 18px 35px rgba(22, 163, 74, 0.3);
+
+        }
+
+        /* PRINT */
+
+        @media print {
+
+            body {
+
+                background: white;
+
+                padding: 0;
+
             }
+
+            .download-btn {
+
+                display: none;
+
+            }
+
+            .ticket-container {
+
+                box-shadow: none;
+
+            }
+
         }
 
+        /* MOBILE */
+
+        @media(max-width:768px) {
+
+            .ticket-header {
+
+                padding: 35px 20px;
+
+            }
+
+            .ticket-header h1 {
+
+                font-size: 30px;
+
+            }
+
+            .ticket-body {
+
+                padding: 25px;
+
+            }
+
+            .info-card {
+
+                padding: 25px 20px;
+
+            }
+
+            .info-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .info-title {
+
+                font-size: 24px;
+
+            }
+
+        }
     </style>
 
 </head>
@@ -143,10 +398,12 @@
 
     <div class="ticket-container">
 
+        <!-- HEADER -->
+
         <div class="ticket-header">
 
             <img src="{% static 'logo.png' %}"
-                 alt="Temple Logo">
+                alt="Temple Logo">
 
             <h1>
 
@@ -162,156 +419,226 @@
 
         </div>
 
+        <!-- BODY -->
+
         <div class="ticket-body">
 
             {% if type == 'Darshan Ticket' %}
 
-                <div class="info-box">
+            <div class="info-card">
 
-                    <h3>Booking Details</h3>
+                <h2 class="info-title">
 
-                    <p>
+                    Darshan Booking Details
 
-                        <strong>Booking ID:</strong>
-                        {{ booking.booking_id }}
+                </h2>
 
-                    </p>
+                <div class="info-grid">
 
-                    <p>
+                    <div class="info-box">
 
-                        <strong>Full Name:</strong>
-                        {{ booking.full_name }}
+                        <h4>Booking ID</h4>
 
-                    </p>
+                        <p>{{ booking.booking_id }}</p>
 
-                    <p>
+                    </div>
 
-                        <strong>Mobile Number:</strong>
-                        {{ booking.mobile_number }}
+                    <div class="info-box">
 
-                    </p>
+                        <h4>Full Name</h4>
 
-                    <p>
+                        <p>{{ booking.full_name }}</p>
 
-                        <strong>Aadhar Number:</strong>
-                        {{ booking.aadhar_number }}
+                    </div>
 
-                    </p>
+                    <div class="info-box">
 
-                    <p>
+                        <h4>Mobile Number</h4>
 
-                        <strong>Darshan Date:</strong>
-                        {{ booking.darshan_date }}
+                        <p>{{ booking.mobile_number }}</p>
 
-                    </p>
+                    </div>
 
-                    <p>
+                    <div class="info-box">
 
-                        <strong>Darshan Slot:</strong>
-                        {{ booking.slot }}
+                        <h4>Aadhar Number</h4>
 
-                    </p>
+                        <p>{{ booking.aadhar_number }}</p>
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <h4>Darshan Date</h4>
+
+                        <p>{{ booking.darshan_date }}</p>
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <h4>Darshan Slot</h4>
+
+                        <p>{{ booking.slot }}</p>
+
+                    </div>
 
                 </div>
 
-            {% endif %}
+                <div class="status-box">
 
+                    <span class="status">
+
+                        Booking Confirmed
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            {% endif %}
 
             {% if type == 'Seva Ticket' %}
 
-                <div class="info-box">
+            <div class="info-card">
 
-                    <h3>Seva Details</h3>
+                <h2 class="info-title">
 
-                    <p>
+                    Seva Booking Details
 
-                        <strong>Booking ID:</strong>
-                        {{ booking.booking_id }}
+                </h2>
 
-                    </p>
+                <div class="info-grid">
 
-                    <p>
+                    <div class="info-box">
 
-                        <strong>Full Name:</strong>
-                        {{ booking.full_name }}
+                        <h4>Booking ID</h4>
 
-                    </p>
+                        <p>{{ booking.booking_id }}</p>
 
-                    <p>
+                    </div>
 
-                        <strong>Mobile Number:</strong>
-                        {{ booking.mobile_number }}
+                    <div class="info-box">
 
-                    </p>
+                        <h4>Full Name</h4>
 
-                    <p>
+                        <p>{{ booking.full_name }}</p>
 
-                        <strong>Seva Name:</strong>
-                        {{ booking.seva_name }}
+                    </div>
 
-                    </p>
+                    <div class="info-box">
 
-                    <p>
+                        <h4>Mobile Number</h4>
 
-                        <strong>Seva Time:</strong>
-                        {{ booking.seva_time }}
+                        <p>{{ booking.mobile_number }}</p>
 
-                    </p>
+                    </div>
 
-                    <p>
+                    <div class="info-box">
 
-                        <strong>Seva Date:</strong>
-                        {{ booking.seva_date }}
+                        <h4>Seva Name</h4>
 
-                    </p>
+                        <p>{{ booking.seva_name }}</p>
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <h4>Seva Time</h4>
+
+                        <p>{{ booking.seva_time }}</p>
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <h4>Seva Date</h4>
+
+                        <p>{{ booking.seva_date }}</p>
+
+                    </div>
 
                 </div>
+
+                <div class="status-box">
+
+                    <span class="status">
+
+                        Seva Confirmed
+
+                    </span>
+
+                </div>
+
+            </div>
 
             {% endif %}
 
-
             {% if type == 'Donation Receipt' %}
 
-                <div class="info-box">
+            <div class="info-card">
 
-                    <h3>Donation Receipt</h3>
+                <h2 class="info-title">
 
-                    <p>
+                    Donation Receipt
 
-                        <strong>Full Name:</strong>
-                        {{ booking.full_name }}
+                </h2>
 
-                    </p>
+                <div class="info-grid">
 
-                    <p>
+                    <div class="info-box">
 
-                        <strong>Mobile Number:</strong>
-                        {{ booking.mobile_number }}
+                        <h4>Full Name</h4>
 
-                    </p>
+                        <p>{{ booking.full_name }}</p>
 
-                    <p>
+                    </div>
 
-                        <strong>Donation Amount:</strong>
-                        ₹{{ booking.amount }}
+                    <div class="info-box">
 
-                    </p>
+                        <h4>Mobile Number</h4>
 
-                    <p>
+                        <p>{{ booking.mobile_number }}</p>
 
-                        <strong>Payment ID:</strong>
-                        {{ booking.payment_id }}
+                    </div>
 
-                    </p>
+                    <div class="info-box">
+
+                        <h4>Donation Amount</h4>
+
+                        <p>₹{{ booking.amount }}</p>
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <h4>Payment ID</h4>
+
+                        <p>{{ booking.payment_id }}</p>
+
+                    </div>
 
                 </div>
+
+                <div class="status-box">
+
+                    <span class="status">
+
+                        Payment Successful
+
+                    </span>
+
+                </div>
+
+            </div>
 
             {% endif %}
 
             <button onclick="window.print()"
-                    class="download-btn">
+                class="download-btn">
 
-                Download / Print
+                Download / Print Ticket
 
             </button>
 

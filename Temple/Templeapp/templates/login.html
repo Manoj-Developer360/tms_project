@@ -102,7 +102,7 @@
 
             width: 100%;
 
-            max-width: 520px;
+            max-width: 850px;
 
             position: relative;
 
@@ -196,7 +196,7 @@
 
             color: #7c2d12;
 
-            font-size: 34px;
+            font-size: 36px;
 
             font-weight: 700;
 
@@ -216,11 +216,15 @@
 
         }
 
-        /* FORM */
+        /* FORM GRID */
 
-        .form-group {
+        .form-grid {
 
-            margin-bottom: 22px;
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 22px;
 
             position: relative;
 
@@ -228,9 +232,23 @@
 
         }
 
-        .form-group label {
+        .full-width {
 
-            display: block;
+            grid-column: span 2;
+
+        }
+
+        /* FORM GROUP */
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+        .form-group label {
 
             margin-bottom: 10px;
 
@@ -267,7 +285,7 @@
 
         .login-box textarea {
 
-            min-height: 110px;
+            min-height: 120px;
 
             resize: none;
 
@@ -308,9 +326,13 @@
 
             transition: 0.35s ease;
 
-            margin-top: 10px;
+            margin-top: 30px;
 
             box-shadow: 0 15px 25px rgba(249, 115, 22, 0.25);
+
+            position: relative;
+
+            z-index: 2;
 
         }
 
@@ -322,7 +344,7 @@
 
         }
 
-        /* MESSAGE */
+        /* MESSAGES */
 
         .error,
         .success {
@@ -369,7 +391,7 @@
 
             text-align: center;
 
-            margin-top: 25px;
+            margin-top: 28px;
 
             color: #6b7280;
 
@@ -391,11 +413,17 @@
 
         /* MOBILE */
 
-        @media(max-width:600px) {
+        @media(max-width:768px) {
 
             body {
 
                 padding: 20px;
+
+            }
+
+            .login-container {
+
+                max-width: 100%;
 
             }
 
@@ -404,6 +432,18 @@
                 padding: 35px 25px;
 
                 border-radius: 28px;
+
+            }
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .full-width {
+
+                grid-column: span 1;
 
             }
 
@@ -465,59 +505,63 @@
 
                 {% csrf_token %}
 
-                <div class="form-group">
+                <div class="form-grid">
 
-                    <label>Full Name</label>
+                    <div class="form-group">
 
-                    <input type="text"
-                        name="name"
-                        placeholder="Enter your full name"
-                        required>
+                        <label>Full Name</label>
 
-                </div>
+                        <input type="text"
+                            name="name"
+                            placeholder="Enter your full name"
+                            required>
 
-                <div class="form-group">
+                    </div>
 
-                    <label>Email Address</label>
+                    <div class="form-group">
 
-                    <input type="email"
-                        name="email"
-                        placeholder="Enter your email address"
-                        required>
+                        <label>Email Address</label>
 
-                </div>
+                        <input type="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            required>
 
-                <div class="form-group">
+                    </div>
 
-                    <label>Mobile Number</label>
+                    <div class="form-group">
 
-                    <input type="text"
-                        name="mobile"
-                        placeholder="Enter mobile number"
-                        maxlength="10"
-                        required>
+                        <label>Mobile Number</label>
 
-                </div>
+                        <input type="text"
+                            name="mobile"
+                            placeholder="Enter mobile number"
+                            maxlength="10"
+                            required>
 
-                <div class="form-group">
+                    </div>
 
-                    <label>Aadhar Number</label>
+                    <div class="form-group">
 
-                    <input type="text"
-                        name="aadhar"
-                        placeholder="Enter Aadhar number"
-                        maxlength="12"
-                        required>
+                        <label>Aadhar Number</label>
 
-                </div>
+                        <input type="text"
+                            name="aadhar"
+                            placeholder="Enter Aadhar number"
+                            maxlength="12"
+                            required>
 
-                <div class="form-group">
+                    </div>
 
-                    <label>Address</label>
+                    <div class="form-group full-width">
 
-                    <textarea name="address"
-                        placeholder="Enter your address"
-                        required></textarea>
+                        <label>Address</label>
+
+                        <textarea name="address"
+                            placeholder="Enter your address"
+                            required></textarea>
+
+                    </div>
 
                 </div>
 
