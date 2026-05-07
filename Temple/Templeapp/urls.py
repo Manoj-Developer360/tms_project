@@ -23,6 +23,7 @@ urlpatterns = [
     path('login',views.login,name='login'),
     path('otp',views.otp,name='otp'),
     path('logout',views.logout,name='logout'),
+    path('festival',views.festival,name='festival'),
     path("profile", views.profile, name="profile"),
     path('darshan',views.darshan,name='darshan'),
     path('seva',views.seva_booking,name='seva_booking'),

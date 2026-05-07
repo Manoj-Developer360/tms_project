@@ -1,0 +1,778 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Upcoming Festivals - Srivari Seva Portal</title>
+
+    <link rel="icon"
+        type="image/png"
+        href="{% static 'logo.png' %}">
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+
+            background:
+                linear-gradient(rgba(255, 247, 237, 0.92),
+                    rgba(255, 247, 237, 0.92)),
+                url("{% static 'temple-bg.jpg' %}");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+            min-height: 100vh;
+
+            color: #1f2937;
+
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            width: 100%;
+
+            padding: 18px 70px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            background: rgba(255, 255, 255, 0.92);
+
+            backdrop-filter: blur(14px);
+
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 999;
+
+        }
+
+        .logo-section {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+        }
+
+        .logo-section img {
+
+            width: 75px;
+            height: 75px;
+
+            object-fit: contain;
+
+        }
+
+        .logo-text h2 {
+
+            color: #7c2d12;
+
+            font-size: 30px;
+
+            font-weight: 700;
+
+        }
+
+        .logo-text p {
+
+            color: #6b7280;
+
+            font-size: 14px;
+
+            margin-top: 3px;
+
+        }
+
+        .home-btn {
+
+            padding: 13px 25px;
+
+            border-radius: 14px;
+
+            background: linear-gradient(135deg,
+                    #f97316,
+                    #ea580c);
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.2);
+
+        }
+
+        .home-btn:hover {
+
+            transform: translateY(-3px);
+
+        }
+
+        /* ================= MAIN ================= */
+
+        .main-container {
+
+            width: 75%;
+
+            margin: 50px auto;
+
+        }
+
+        /* ================= HERO ================= */
+
+        .hero-section {
+
+            background: rgba(255, 255, 255, 0.92);
+
+            border-radius: 35px;
+
+            padding: 60px;
+
+            text-align: center;
+
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+
+            margin-bottom: 45px;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        .hero-section::before {
+
+            content: '';
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            background: rgba(249, 115, 22, 0.08);
+
+            border-radius: 50%;
+
+            top: -120px;
+            right: -120px;
+
+        }
+
+        .hero-section h1 {
+
+            font-size: 48px;
+
+            color: #7c2d12;
+
+            margin-bottom: 18px;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+        .hero-section p {
+
+            color: #6b7280;
+
+            font-size: 17px;
+
+            line-height: 34px;
+
+            max-width: 850px;
+
+            margin: auto;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+        /* ================= FESTIVAL LIST ================= */
+
+        .festival-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 30px;
+
+        }
+
+        /* ================= FESTIVAL CARD ================= */
+
+        .festival-card {
+
+            background: rgba(255, 255, 255, 0.95);
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            gap: 30px;
+
+            padding: 30px;
+
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s;
+
+            align-items: center;
+
+        }
+
+        .festival-card:hover {
+
+            transform: translateY(-5px);
+
+        }
+
+        .festival-card img {
+
+            width: 320px;
+
+            height: 220px;
+
+            object-fit: cover;
+
+            border-radius: 24px;
+
+        }
+
+        .festival-content {
+
+            flex: 1;
+
+        }
+
+        .festival-date {
+
+            display: inline-block;
+
+            background: #fff7ed;
+
+            color: #ea580c;
+
+            padding: 9px 18px;
+
+            border-radius: 50px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 18px;
+
+        }
+
+        .festival-content h2 {
+
+            color: #7c2d12;
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+
+        }
+
+        .festival-content p {
+
+            color: #6b7280;
+
+            font-size: 15px;
+
+            line-height: 30px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .festival-footer {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+
+        }
+
+        .festival-location {
+
+            color: #9a3412;
+
+            font-weight: 600;
+
+            font-size: 14px;
+
+        }
+
+        .festival-btn {
+
+            padding: 11px 22px;
+
+            border-radius: 12px;
+
+            background: linear-gradient(135deg,
+                    #f97316,
+                    #ea580c);
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+
+        }
+
+        .festival-btn:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width:992px) {
+
+            .navbar {
+
+                padding: 20px;
+
+                flex-direction: column;
+
+                gap: 20px;
+
+            }
+
+            .main-container {
+
+                width: 92%;
+
+            }
+
+            .hero-section {
+
+                padding: 40px 25px;
+
+            }
+
+            .hero-section h1 {
+
+                font-size: 38px;
+
+            }
+
+            .festival-card {
+
+                flex-direction: column;
+
+            }
+
+            .festival-card img {
+
+                width: 100%;
+
+            }
+
+        }
+
+        @media(max-width:600px) {
+
+            .hero-section h1 {
+
+                font-size: 30px;
+
+            }
+
+            .logo-text h2 {
+
+                font-size: 24px;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo-section">
+
+            <img src="{% static 'logo.png' %}"
+                alt="Temple Logo">
+
+            <div class="logo-text">
+
+                <h2>
+
+                    Srivari Seva Portal
+
+                </h2>
+
+                <p>
+
+                    Online Darshan & Temple Services
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <a href="{% url 'home' %}"
+            class="home-btn">
+
+            Back To Home
+
+        </a>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="main-container">
+
+        <!-- HERO -->
+
+        <div class="hero-section">
+
+            <h1>
+
+                Upcoming Temple Festivals 2026
+
+            </h1>
+
+            <p>
+
+                Participate in the sacred rituals, divine processions,
+                special poojas and grand spiritual celebrations inspired
+                by Tirumala Tirupati Devasthanams traditions.
+
+            </p>
+
+        </div>
+
+        <!-- FESTIVALS -->
+
+        <div class="festival-list">
+
+            <!-- FESTIVAL 1 -->
+
+            <div class="festival-card">
+
+                <img src="{% static 'festival1.jpg' %}"
+                    alt="Festival">
+
+                <div class="festival-content">
+
+                    <span class="festival-date">
+
+                        12 May 2026
+
+                    </span>
+
+                    <h2>
+
+                        Hanuman Jayanthi Celebrations
+
+                    </h2>
+
+                    <p>
+
+                        Sacred Hanuman Jayanthi celebrations featuring
+                        special Abhishekam rituals, devotional chanting,
+                        spiritual music and temple processions dedicated
+                        to Lord Hanuman.
+
+                    </p>
+
+                    <div class="festival-footer">
+
+                        <span class="festival-location">
+
+                            Tirumala Temple
+
+                        </span>
+
+                        <a href="#"
+                            class="festival-btn">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FESTIVAL 2 -->
+
+            <div class="festival-card">
+
+                <img src="{% static 'festival2.jpg' %}"
+                    alt="Festival">
+
+                <div class="festival-content">
+
+                    <span class="festival-date">
+
+                        21 May 2026
+
+                    </span>
+
+                    <h2>
+
+                        Nammalwar Utsavams
+
+                    </h2>
+
+                    <p>
+
+                        Commencement of the 10-day Nammalwar Utsavams
+                        with Vedic chanting, divine rituals, temple
+                        decorations and special poojas honoring
+                        Saint Nammalwar.
+
+                    </p>
+
+                    <div class="festival-footer">
+
+                        <span class="festival-location">
+
+                            Srivari Temple
+
+                        </span>
+
+                        <a href="#"
+                            class="festival-btn">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FESTIVAL 3 -->
+
+            <div class="festival-card">
+
+                <img src="{% static 'festival3.jpg' %}"
+                    alt="Festival">
+
+                <div class="festival-content">
+
+                    <span class="festival-date">
+
+                        30 May 2026
+
+                    </span>
+
+                    <h2>
+
+                        Nammalwar Sattumora
+
+                    </h2>
+
+                    <p>
+
+                        Grand finale celebration of the Nammalwar
+                        Utsavam featuring devotional programs,
+                        sacred rituals and spiritual gatherings
+                        attended by thousands of devotees.
+
+                    </p>
+
+                    <div class="festival-footer">
+
+                        <span class="festival-location">
+
+                            Temple Mandapam
+
+                        </span>
+
+                        <a href="#"
+                            class="festival-btn">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FESTIVAL 4 -->
+
+            <div class="festival-card">
+
+                <img src="{% static 'festival4.jpg' %}"
+                    alt="Festival">
+
+                <div class="festival-content">
+
+                    <span class="festival-date">
+
+                        31 May 2026
+
+                    </span>
+
+                    <h2>
+
+                        Pournami Garuda Vahana Seva
+
+                    </h2>
+
+                    <p>
+
+                        Divine monthly evening procession of Lord
+                        Malayappa Swamy on Garuda Vahanam with
+                        devotional singing, temple lights and
+                        grand spiritual celebrations.
+
+                    </p>
+
+                    <div class="festival-footer">
+
+                        <span class="festival-location">
+
+                            Temple Streets
+
+                        </span>
+
+                        <a href="#"
+                            class="festival-btn">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FESTIVAL 5 -->
+
+            <div class="festival-card">
+
+                <img src="{% static 'festival5.jpg' %}"
+                    alt="Festival">
+
+                <div class="festival-content">
+
+                    <span class="festival-date">
+
+                        15 September 2026
+
+                    </span>
+
+                    <h2>
+
+                        Tirupati Festival Commencement
+
+                    </h2>
+
+                    <p>
+
+                        Beginning of the main annual Tirupati
+                        festival celebrations with special darshan,
+                        cultural events, sacred rituals and
+                        large-scale spiritual gatherings.
+
+                    </p>
+
+                    <div class="festival-footer">
+
+                        <span class="festival-location">
+
+                            Tirupati Temple Campus
+
+                        </span>
+
+                        <a href="#"
+                            class="festival-btn">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

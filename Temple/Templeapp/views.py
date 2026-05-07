@@ -20,8 +20,10 @@ from .models import (
 # HOME PAGE
 
 def home(request):
-
     return render(request, 'home.html')
+
+def festival(request):
+    return render(request, 'festival.html')
 
 
 # LOGIN PAGE
