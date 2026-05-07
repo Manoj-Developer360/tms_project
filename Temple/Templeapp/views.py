@@ -1,8 +1,9 @@
 import random
 import uuid
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect 
 from django.contrib import messages
+from django.contrib.auth import logout
 
 from .models import (
 
@@ -15,7 +16,6 @@ from .models import (
     Donation
 
 )
-
 
 # HOME PAGE
 
@@ -436,3 +436,21 @@ def download_donation(request, id):
         'download.html',
         context
     )
+
+def user_logout(request):
+
+    if request.user.is_authenticated:
+
+        # Delete user related bookings
+        DarshanBooking.objects.filter(user=request.user).delete()
+
+        SevaBooking.objects.filter(user=request.user).delete()
+
+        Donation.objects.filter(user=request.user).delete()
+
+        # Delete user account
+        request.user.delete()
+
+    logout(request)
+
+    return redirect('login')

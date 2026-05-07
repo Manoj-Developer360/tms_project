@@ -47,4 +47,6 @@ urlpatterns = [
         views.download_donation,
         name='download_donation'
     ),
+
+    path('logout/', views.user_logout, name='logout')
 ]

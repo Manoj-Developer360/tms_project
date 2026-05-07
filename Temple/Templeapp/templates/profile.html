@@ -13,467 +13,741 @@
 
     <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
-        body {
+    body {
 
-            background: #fff7ed;
+        background:
+            linear-gradient(rgba(255, 247, 237, 0.94),
+                rgba(255, 247, 237, 0.94)),
+            url("{% static 'temple-bg.jpg' %}");
 
-            min-height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
 
-        }
+        min-height: 100vh;
 
-        /* NAVBAR */
+        color: #1f2937;
 
-        .navbar {
+    }
 
-            width: 100%;
+    /* ================= NAVBAR ================= */
 
-            background: white;
+    .navbar {
 
-            padding: 18px 60px;
+        width: 100%;
 
-            display: flex;
+        padding: 18px 70px;
 
-            justify-content: space-between;
+        display: flex;
 
-            align-items: center;
+        justify-content: space-between;
 
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        align-items: center;
 
-            position: sticky;
+        background: rgba(255, 255, 255, 0.92);
 
-            top: 0;
+        backdrop-filter: blur(12px);
 
-            z-index: 100;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
 
-        }
+        position: sticky;
 
-        .logo-section {
+        top: 0;
 
-            display: flex;
+        z-index: 999;
 
-            align-items: center;
+    }
 
-            gap: 15px;
+    .logo-section {
 
-        }
+        display: flex;
 
-        .logo-section img {
+        align-items: center;
 
-            width: 75px;
-            height: 75px;
+        gap: 18px;
 
-        }
+    }
 
-        .logo-section h2 {
+    .logo-section img {
 
-            color: #8b2500;
+        width: 78px;
+        height: 78px;
+        object-fit: contain;
 
-            font-size: 28px;
+    }
 
-        }
+    .logo-text h2 {
 
-        .logo-section p {
+        color: #7c2d12;
 
-            color: #666;
+        font-size: 30px;
 
-            font-size: 14px;
+        font-weight: 700;
 
-        }
+    }
 
-        .nav-buttons {
+    .logo-text p {
 
-            display: flex;
+        color: #6b7280;
 
-            gap: 15px;
+        font-size: 14px;
 
-        }
+        margin-top: 3px;
 
-        .nav-btn {
+    }
 
-            padding: 12px 22px;
+    .nav-buttons {
 
-            border-radius: 12px;
+        display: flex;
 
-            text-decoration: none;
+        align-items: center;
 
-            color: white;
+        gap: 15px;
 
-            font-weight: 600;
+    }
 
-            transition: 0.3s;
+    .nav-btn {
 
-        }
+        padding: 13px 24px;
 
-        .home-btn {
+        border-radius: 14px;
 
-            background: #ea580c;
+        text-decoration: none;
 
-        }
+        font-weight: 600;
 
-        .logout-btn {
+        color: white;
 
-            background: #b91c1c;
+        transition: 0.3s ease;
 
-        }
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 
-        .nav-btn:hover {
+    }
 
-            transform: translateY(-2px);
+    .home-btn {
 
-        }
+        background: linear-gradient(135deg, #f97316, #ea580c);
 
-        /* MAIN */
+    }
+
+    .logout-btn {
+
+        background: linear-gradient(135deg, #dc2626, #991b1b);
+
+    }
+
+    .nav-btn:hover {
+
+        transform: translateY(-3px);
+
+    }
+
+    /* ================= MAIN CONTAINER ================= */
+
+    .main-container {
+
+        width: 75%;
+
+        margin: 45px auto;
+
+    }
+
+    /* ================= PROFILE CARD ================= */
+
+    .profile-card {
+
+        width: 100%;
+
+        background: rgba(255, 255, 255, 0.88);
+
+        backdrop-filter: blur(12px);
+
+        border-radius: 35px;
+
+        padding: 45px;
+
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+
+        margin-bottom: 45px;
+
+        position: relative;
+
+        overflow: hidden;
+
+        border: 1px solid rgba(255, 255, 255, 0.5);
+
+    }
+
+    .profile-card::before {
+
+        content: '';
+
+        position: absolute;
+
+        top: -120px;
+        right: -120px;
+
+        width: 280px;
+        height: 280px;
+
+        background: rgba(249, 115, 22, 0.08);
+
+        border-radius: 50%;
+
+    }
+
+    .profile-top {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        flex-wrap: wrap;
+
+        gap: 30px;
+
+        position: relative;
+
+        z-index: 2;
+
+    }
+
+    .profile-left {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 30px;
+
+        flex-wrap: wrap;
+
+    }
+
+    .profile-left img {
+
+        width: 130px;
+        height: 130px;
+
+        border-radius: 50%;
+
+        border: 5px solid #f59e0b;
+
+        padding: 8px;
+
+        background: white;
+
+        box-shadow: 0 12px 30px rgba(249, 115, 22, 0.18);
+
+    }
+
+    .profile-details h1 {
+
+        font-size: 38px;
+
+        color: #7c2d12;
+
+        margin-bottom: 10px;
+
+        font-weight: 700;
+
+    }
+
+    .profile-details p {
+
+        color: #6b7280;
+
+        line-height: 30px;
+
+        max-width: 650px;
+
+        font-size: 16px;
+
+    }
+
+    .profile-badge {
+
+        background: linear-gradient(135deg, #f59e0b, #ea580c);
+
+        color: white;
+
+        padding: 12px 24px;
+
+        border-radius: 50px;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+
+    }
+
+    /* ================= INFO GRID ================= */
+
+    .info-grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+        gap: 22px;
+
+        margin-top: 40px;
+
+        position: relative;
+
+        z-index: 2;
+
+    }
+
+    .info-box {
+
+        background: linear-gradient(145deg, #fffaf5, #ffffff);
+
+        border-radius: 24px;
+
+        padding: 25px;
+
+        border: 1px solid #fed7aa;
+
+        transition: 0.3s;
+
+    }
+
+    .info-box:hover {
+
+        transform: translateY(-4px);
+
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+
+    }
+
+    .info-box h4 {
+
+        color: #9a3412;
+
+        margin-bottom: 10px;
+
+        font-size: 15px;
+
+        font-weight: 600;
+
+    }
+
+    .info-box p {
+
+        color: #111827;
+
+        font-size: 16px;
+
+        font-weight: 600;
+
+        line-height: 28px;
+
+        word-break: break-word;
+
+    }
+
+    /* ================= SECTION ================= */
+
+    .section {
+
+        margin-top: 50px;
+
+    }
+
+    .section-header {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 25px;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+
+    }
+
+    .section-title {
+
+        font-size: 34px;
+
+        color: #7c2d12;
+
+        font-weight: 700;
+
+    }
+
+    .section-count {
+
+        background: rgba(255, 255, 255, 0.9);
+
+        color: #ea580c;
+
+        padding: 10px 22px;
+
+        border-radius: 40px;
+
+        font-weight: 700;
+
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+
+    }
+
+    /* ================= BOOKING GRID ================= */
+
+    .booking-grid {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 28px;
+
+    }
+
+    /* ================= BOOKING CARD ================= */
+
+    .booking-card {
+
+        width: 100%;
+
+        background: rgba(255, 255, 255, 0.9);
+
+        backdrop-filter: blur(10px);
+
+        border-radius: 32px;
+
+        padding: 35px;
+
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+
+        position: relative;
+
+        overflow: hidden;
+
+        transition: 0.35s ease;
+
+        border: 1px solid rgba(255, 255, 255, 0.4);
+
+    }
+
+    .booking-card::before {
+
+        content: '';
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 7px;
+
+        background: linear-gradient(to right, #f97316, #f59e0b);
+
+    }
+
+    .booking-card:hover {
+
+        transform: translateY(-5px);
+
+        box-shadow: 0 22px 45px rgba(0, 0, 0, 0.12);
+
+    }
+
+    .card-top {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 25px;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+
+    }
+
+    .booking-card h3 {
+
+        color: #7c2d12;
+
+        font-size: 26px;
+
+        font-weight: 700;
+
+    }
+
+    .status {
+
+        background: #dcfce7;
+
+        color: #166534;
+
+        padding: 10px 20px;
+
+        border-radius: 30px;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+    }
+
+    /* ================= BOOKING INFO ================= */
+
+    .booking-info {
+
+        margin-top: 10px;
+
+    }
+
+    .booking-info p {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 20px;
+
+        padding: 16px 0;
+
+        border-bottom: 1px solid #ececec;
+
+        color: #374151;
+
+        font-size: 15px;
+
+    }
+
+    .booking-info strong {
+
+        color: #111827;
+
+        font-weight: 600;
+
+    }
+
+    /* ================= BUTTONS ================= */
+
+    .card-buttons {
+
+        display: flex;
+
+        gap: 15px;
+
+        margin-top: 32px;
+
+        flex-wrap: wrap;
+
+    }
+
+    .action-btn {
+
+        flex: 1;
+
+        text-align: center;
+
+        text-decoration: none;
+
+        padding: 16px;
+
+        border-radius: 16px;
+
+        color: white;
+
+        font-weight: 600;
+
+        transition: 0.3s;
+
+        font-size: 15px;
+
+    }
+
+    .download-btn {
+
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+
+    }
+
+    .view-btn {
+
+        background: linear-gradient(135deg, #16a34a, #15803d);
+
+    }
+
+    .action-btn:hover {
+
+        transform: translateY(-3px);
+
+    }
+
+    /* ================= EMPTY ================= */
+
+    .empty {
+
+        background: rgba(255, 255, 255, 0.92);
+
+        border-radius: 28px;
+
+        padding: 55px 30px;
+
+        text-align: center;
+
+        color: #6b7280;
+
+        font-size: 17px;
+
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+
+    }
+
+    /* ================= TABLET ================= */
+
+    @media(max-width:1200px) {
 
         .main-container {
 
-            width: 100%;
-
-            padding: 40px 50px;
+            width: 88%;
 
         }
 
-        /* PROFILE CARD */
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media(max-width:992px) {
+
+        .navbar {
+
+            padding: 20px;
+
+            flex-direction: column;
+
+            gap: 20px;
+
+        }
+
+        .main-container {
+
+            width: 94%;
+
+            margin: 25px auto;
+
+        }
 
         .profile-card {
 
-            background: white;
-
-            border-radius: 30px;
-
-            padding: 40px;
-
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-
-            margin-bottom: 40px;
+            padding: 30px 22px;
 
         }
 
         .profile-top {
 
-            display: flex;
+            flex-direction: column;
 
-            align-items: center;
-
-            gap: 30px;
-
-            flex-wrap: wrap;
+            align-items: flex-start;
 
         }
 
-        .profile-top img {
+        .profile-left {
 
-            width: 130px;
+            flex-direction: column;
 
-            height: 130px;
-
-            border-radius: 50%;
-
-            border: 5px solid #f59e0b;
-
-            background: white;
-
-            padding: 10px;
+            align-items: flex-start;
 
         }
 
         .profile-details h1 {
 
-            color: #8b2500;
-
-            margin-bottom: 10px;
-
-            font-size: 34px;
-
-        }
-
-        .profile-details p {
-
-            color: #666;
-
-            line-height: 28px;
-
-            font-size: 16px;
-
-        }
-
-        /* INFO GRID */
-
-        .info-grid {
-
-            display: grid;
-
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-
-            gap: 20px;
-
-            margin-top: 35px;
-
-        }
-
-        .info-box {
-
-            background: #fffaf5;
-
-            border: 2px solid #fed7aa;
-
-            border-radius: 20px;
-
-            padding: 20px;
-
-        }
-
-        .info-box h4 {
-
-            color: #9a3412;
-
-            margin-bottom: 10px;
-
-            font-size: 16px;
-
-        }
-
-        .info-box p {
-
-            color: #444;
-
-            font-weight: 500;
-
-            word-break: break-word;
-
-        }
-
-        /* SECTION */
-
-        .section {
-
-            margin-top: 40px;
+            font-size: 30px;
 
         }
 
         .section-title {
 
-            font-size: 30px;
-
-            color: #7c2d12;
-
-            margin-bottom: 25px;
-
-            font-weight: 700;
+            font-size: 28px;
 
         }
 
-        /* BOOKING GRID */
+    }
 
-        .booking-grid {
+    @media(max-width:600px) {
 
-            display: grid;
+        .profile-left {
 
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            align-items: center;
 
-            gap: 25px;
-
-        }
-
-        /* BOOKING CARD */
-
-        .booking-card {
-
-            background: white;
-
-            border-radius: 25px;
-
-            padding: 28px;
-
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-
-            border-top: 6px solid #f97316;
-
-            transition: 0.3s;
+            text-align: center;
 
         }
 
-        .booking-card:hover {
+        .profile-top {
 
-            transform: translateY(-5px);
+            align-items: center;
+
+            text-align: center;
 
         }
 
-        .booking-card h3 {
+        .booking-info p {
 
-            color: #9a3412;
+            flex-direction: column;
 
-            margin-bottom: 20px;
+            align-items: flex-start;
+
+            gap: 6px;
+
+        }
+
+        .card-buttons {
+
+            flex-direction: column;
+
+        }
+
+        .logo-text h2 {
 
             font-size: 24px;
 
         }
 
-        .booking-card p {
+        .booking-card {
 
-            margin-bottom: 12px;
-
-            color: #555;
-
-            line-height: 26px;
-
-            font-size: 15px;
+            padding: 25px;
 
         }
 
-        .booking-card strong {
-
-            color: #111827;
-
-        }
-
-        /* STATUS */
-
-        .status {
-
-            display: inline-block;
-
-            padding: 8px 18px;
-
-            border-radius: 30px;
-
-            font-size: 14px;
-
-            font-weight: 700;
-
-            margin-top: 10px;
-
-        }
-
-        .approved {
-
-            background: #dcfce7;
-
-            color: #166534;
-
-        }
-
-        /* BUTTON GROUP */
-
-        .card-buttons {
-
-            display: flex;
-
-            gap: 12px;
-
-            margin-top: 25px;
-
-            flex-wrap: wrap;
-
-        }
-
-        .action-btn {
-
-            flex: 1;
-
-            text-align: center;
-
-            padding: 12px;
-
-            border-radius: 12px;
-
-            text-decoration: none;
-
-            color: white;
-
-            font-weight: 600;
-
-            transition: 0.3s;
-
-        }
-
-        .download-btn {
-
-            background: #2563eb;
-
-        }
-
-        .view-btn {
-
-            background: #16a34a;
-
-        }
-
-        .action-btn:hover {
-
-            transform: translateY(-2px);
-
-        }
-
-        /* EMPTY */
-
-        .empty {
-
-            background: white;
-
-            padding: 30px;
-
-            border-radius: 20px;
-
-            text-align: center;
-
-            color: #777;
-
-            font-size: 16px;
-
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-
-        }
-
-        /* MOBILE */
-
-        @media(max-width:768px) {
-
-            .navbar {
-
-                padding: 20px;
-
-                flex-direction: column;
-
-                gap: 20px;
-
-            }
-
-            .main-container {
-
-                padding: 25px 15px;
-
-            }
-
-            .profile-card {
-
-                padding: 25px;
-
-            }
-
-            .profile-top {
-
-                flex-direction: column;
-
-                text-align: center;
-
-            }
-
-            .booking-grid {
-
-                grid-template-columns: 1fr;
-
-            }
-
-        }
-    </style>
+    }
+</style>
 
 </head>
 
@@ -487,19 +761,11 @@
 
             <img src="{% static 'logo.png' %}" alt="Temple Logo">
 
-            <div>
+            <div class="logo-text">
 
-                <h2>
+                <h2>Srivari Seva Portal</h2>
 
-                    Srivari Seva Portal
-
-                </h2>
-
-                <p>
-
-                    Online Darshan & Temple Services
-
-                </p>
+                <p>Online Darshan & Temple Services</p>
 
             </div>
 
@@ -533,22 +799,33 @@
 
             <div class="profile-top">
 
-                <img src="{% static 'profile.png' %}" alt="Profile">
+                <div class="profile-left">
 
-                <div class="profile-details">
+                    <img src="{% static 'profile.png' %}" alt="Profile">
 
-                    <h1>
+                    <div class="profile-details">
 
-                        Welcome {{ user.name }}
+                        <h1>
 
-                    </h1>
+                            Welcome {{ user.name }}
 
-                    <p>
+                        </h1>
 
-                        Devotee Dashboard — Manage your darshan bookings,
-                        seva tickets and temple donations online.
+                        <p>
 
-                    </p>
+                            Manage your Darshan bookings, Seva tickets,
+                            temple donations and downloadable receipts
+                            from your spiritual dashboard.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="profile-badge">
+
+                    Verified Devotee
 
                 </div>
 
@@ -562,11 +839,7 @@
 
                     <h4>Mobile Number</h4>
 
-                    <p>
-
-                        {{ user.mobile_number }}
-
-                    </p>
+                    <p>{{ user.mobile_number }}</p>
 
                 </div>
 
@@ -574,11 +847,7 @@
 
                     <h4>Email Address</h4>
 
-                    <p>
-
-                        {{ user.email }}
-
-                    </p>
+                    <p>{{ user.email }}</p>
 
                 </div>
 
@@ -586,11 +855,7 @@
 
                     <h4>Aadhar Number</h4>
 
-                    <p>
-
-                        {{ user.aadhar_number }}
-
-                    </p>
+                    <p>{{ user.aadhar_number }}</p>
 
                 </div>
 
@@ -598,11 +863,7 @@
 
                     <h4>Address</h4>
 
-                    <p>
-
-                        {{ user.address }}
-
-                    </p>
+                    <p>{{ user.address }}</p>
 
                 </div>
 
@@ -614,11 +875,21 @@
 
         <div class="section">
 
-            <h2 class="section-title">
+            <div class="section-header">
 
-                Darshan Bookings
+                <h2 class="section-title">
 
-            </h2>
+                    Darshan Bookings
+
+                </h2>
+
+                <div class="section-count">
+
+                    {{ darshan_bookings|length }} Tickets
+
+                </div>
+
+            </div>
 
             <div class="booking-grid">
 
@@ -626,69 +897,56 @@
 
                 <div class="booking-card">
 
-                    <h3>
+                    <div class="card-top">
 
-                        Darshan Ticket
+                        <h3>Darshan Ticket</h3>
 
-                    </h3>
+                        <span class="status">
 
-                    <p>
+                            Confirmed
 
-                        <strong>Booking ID:</strong>
+                        </span>
 
-                        {{ booking.booking_id }}
+                    </div>
 
-                    </p>
+                    <div class="booking-info">
 
-                    <p>
+                        <p>
+                            <strong>Booking ID</strong>
+                            <span>{{ booking.booking_id }}</span>
+                        </p>
 
-                        <strong>Full Name:</strong>
+                        <p>
+                            <strong>Full Name</strong>
+                            <span>{{ booking.full_name }}</span>
+                        </p>
 
-                        {{ booking.full_name }}
+                        <p>
+                            <strong>Mobile</strong>
+                            <span>{{ booking.mobile_number }}</span>
+                        </p>
 
-                    </p>
+                        <p>
+                            <strong>Aadhar</strong>
+                            <span>{{ booking.aadhar_number }}</span>
+                        </p>
 
-                    <p>
+                        <p>
+                            <strong>Date</strong>
+                            <span>{{ booking.darshan_date }}</span>
+                        </p>
 
-                        <strong>Mobile:</strong>
+                        <p>
+                            <strong>Slot</strong>
+                            <span>{{ booking.slot }}</span>
+                        </p>
 
-                        {{ booking.mobile_number }}
-
-                    </p>
-
-                    <p>
-
-                        <strong>Aadhar:</strong>
-
-                        {{ booking.aadhar_number }}
-
-                    </p>
-
-                    <p>
-
-                        <strong>Date:</strong>
-
-                        {{ booking.darshan_date }}
-
-                    </p>
-
-                    <p>
-
-                        <strong>Slot:</strong>
-
-                        {{ booking.slot }}
-
-                    </p>
-
-                    <span class="status approved">
-
-                        Booking Confirmed
-
-                    </span>
+                    </div>
 
                     <div class="card-buttons">
 
-                        <a href="{% url 'download_darshan' booking.id %}" class="action-btn download-btn">
+                        <a href="{% url 'download_darshan' booking.id %}"
+                            class="action-btn download-btn">
 
                             Download Ticket
 
@@ -716,11 +974,21 @@
 
         <div class="section">
 
-            <h2 class="section-title">
+            <div class="section-header">
 
-                Seva Bookings
+                <h2 class="section-title">
 
-            </h2>
+                    Seva Bookings
+
+                </h2>
+
+                <div class="section-count">
+
+                    {{ seva_bookings|length }} Tickets
+
+                </div>
+
+            </div>
 
             <div class="booking-grid">
 
@@ -728,69 +996,56 @@
 
                 <div class="booking-card">
 
-                    <h3>
+                    <div class="card-top">
 
-                        Seva Ticket
+                        <h3>Seva Ticket</h3>
 
-                    </h3>
+                        <span class="status">
 
-                    <p>
+                            Confirmed
 
-                        <strong>Booking ID:</strong>
+                        </span>
 
-                        {{ seva.booking_id }}
+                    </div>
 
-                    </p>
+                    <div class="booking-info">
 
-                    <p>
+                        <p>
+                            <strong>Booking ID</strong>
+                            <span>{{ seva.booking_id }}</span>
+                        </p>
 
-                        <strong>Full Name:</strong>
+                        <p>
+                            <strong>Full Name</strong>
+                            <span>{{ seva.full_name }}</span>
+                        </p>
 
-                        {{ seva.full_name }}
+                        <p>
+                            <strong>Mobile</strong>
+                            <span>{{ seva.mobile_number }}</span>
+                        </p>
 
-                    </p>
+                        <p>
+                            <strong>Seva</strong>
+                            <span>{{ seva.seva_name }}</span>
+                        </p>
 
-                    <p>
+                        <p>
+                            <strong>Time</strong>
+                            <span>{{ seva.seva_time }}</span>
+                        </p>
 
-                        <strong>Mobile:</strong>
+                        <p>
+                            <strong>Date</strong>
+                            <span>{{ seva.seva_date }}</span>
+                        </p>
 
-                        {{ seva.mobile_number }}
-
-                    </p>
-
-                    <p>
-
-                        <strong>Seva:</strong>
-
-                        {{ seva.seva_name }}
-
-                    </p>
-
-                    <p>
-
-                        <strong>Time:</strong>
-
-                        {{ seva.seva_time }}
-
-                    </p>
-
-                    <p>
-
-                        <strong>Date:</strong>
-
-                        {{ seva.seva_date }}
-
-                    </p>
-
-                    <span class="status approved">
-
-                        Seva Confirmed
-
-                    </span>
+                    </div>
 
                     <div class="card-buttons">
 
-                        <a href="{% url 'download_seva' seva.id %}" class="action-btn download-btn">
+                        <a href="{% url 'download_seva' seva.id %}"
+                            class="action-btn download-btn">
 
                             Download Ticket
 
@@ -818,11 +1073,21 @@
 
         <div class="section">
 
-            <h2 class="section-title">
+            <div class="section-header">
 
-                Donation History
+                <h2 class="section-title">
 
-            </h2>
+                    Donation History
+
+                </h2>
+
+                <div class="section-count">
+
+                    {{ donations|length }} Donations
+
+                </div>
+
+            </div>
 
             <div class="booking-grid">
 
@@ -830,53 +1095,46 @@
 
                 <div class="booking-card">
 
-                    <h3>
+                    <div class="card-top">
 
-                        Temple Donation
+                        <h3>Temple Donation</h3>
 
-                    </h3>
+                        <span class="status">
 
-                    <p>
+                            Successful
 
-                        <strong>Full Name:</strong>
+                        </span>
 
-                        {{ donation.full_name }}
+                    </div>
 
-                    </p>
+                    <div class="booking-info">
 
-                    <p>
+                        <p>
+                            <strong>Full Name</strong>
+                            <span>{{ donation.full_name }}</span>
+                        </p>
 
-                        <strong>Mobile:</strong>
+                        <p>
+                            <strong>Mobile</strong>
+                            <span>{{ donation.mobile_number }}</span>
+                        </p>
 
-                        {{ donation.mobile_number }}
+                        <p>
+                            <strong>Donation Amount</strong>
+                            <span>₹{{ donation.amount }}</span>
+                        </p>
 
-                    </p>
+                        <p>
+                            <strong>Payment ID</strong>
+                            <span>{{ donation.payment_id }}</span>
+                        </p>
 
-                    <p>
-
-                        <strong>Donation Amount:</strong>
-
-                        ₹{{ donation.amount }}
-
-                    </p>
-
-                    <p>
-
-                        <strong>Payment ID:</strong>
-
-                        {{ donation.payment_id }}
-
-                    </p>
-
-                    <span class="status approved">
-
-                        Payment Successful
-
-                    </span>
+                    </div>
 
                     <div class="card-buttons">
 
-                        <a href="{% url 'download_donation' donation.id %}" class="action-btn download-btn">
+                        <a href="{% url 'download_donation' donation.id %}"
+                            class="action-btn download-btn">
 
                             Download Receipt
 
