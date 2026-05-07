@@ -24,13 +24,13 @@
                 </div>
                 <div>
                     <ul>
-                        <li><a href="home.html">Home</a></li>
+                        <li><a href="{% url 'home' %}">Home</a></li>
                         <li><a href="#">About Temple</a></li>
-                        <li><a href="#">Darshan</a></li>
-                        <li><a href="#">Seva</a></li>
+                        <li><a href="{% url 'darshan' %}">Darshan</a></li>
+                        <li><a href="{% url 'seva_booking' %}">Seva</a></li>
                         <li><a href="#">Festivals</a></li>
                         <li><a href="#">Prasadam</a></li>
-                        <li><a href="#">Donation</a></li>
+                        <li><a href="{% url 'donation' %}">Donation</a></li>
                         <li><a href="#">Gallery</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>

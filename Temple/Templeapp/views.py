@@ -1,47 +1,90 @@
 import random
+import uuid
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import LoginUser
 
-# Create your views here.
+from .models import (
+
+    LoginUser,
+
+    DarshanBooking,
+
+    SevaBooking,
+
+    Donation
+
+)
+
+
+# HOME PAGE
 
 def home(request):
-    return render(request,'home.html')
 
-# LOGIN VIEW
+    return render(request, 'home.html')
+
+
+# LOGIN PAGE
 
 def login(request):
 
     if request.method == "POST":
 
+        name = request.POST.get("name")
+
+        email = request.POST.get("email")
+
         mobile = request.POST.get("mobile")
 
-        # CHECK ALREADY EXISTS
+        aadhar = request.POST.get("aadhar")
+
+        address = request.POST.get("address")
+
+        # CHECK MOBILE EXISTS
 
         if LoginUser.objects.filter(
-            Mobile_number=mobile
+            mobile_number=mobile
         ).exists():
 
             messages.error(
                 request,
-                "This number already exists"
+                "Mobile Number Already Registered"
             )
 
             return redirect("login")
 
-        # GENERATE RANDOM OTP
+        # CHECK AADHAR EXISTS
+
+        if LoginUser.objects.filter(
+            aadhar_number=aadhar
+        ).exists():
+
+            messages.error(
+                request,
+                "Aadhar Number Already Registered"
+            )
+
+            return redirect("login")
+
+        # GENERATE OTP
 
         otp = random.randint(100000, 999999)
 
-        # STORE SESSION
+        print("OTP :", otp)
 
-        request.session['mobile'] = mobile
+        # STORE SESSION
 
         request.session['otp'] = str(otp)
 
-        # SHOW OTP IN TERMINAL
+        request.session['name'] = name
 
-        print("OTP:", otp)
+        request.session['email'] = email
+
+        request.session['mobile'] = mobile
+
+        request.session['aadhar'] = aadhar
+
+        request.session['address'] = address
 
         messages.success(
             request,
@@ -53,7 +96,7 @@ def login(request):
     return render(request, "login.html")
 
 
-# OTP VERIFY VIEW
+# OTP VERIFY
 
 def otp(request):
 
@@ -63,23 +106,36 @@ def otp(request):
 
         session_otp = request.session.get("otp")
 
-        # OTP VALIDATION
+        # CHECK OTP
 
         if entered_otp == session_otp:
 
-            mobile = request.session.get("mobile")
+            user = LoginUser.objects.create(
 
-            # STORE MOBILE NUMBER IN DATABASE
+                name=request.session.get("name"),
 
-            LoginUser.objects.create(
+                email=request.session.get("email"),
 
-                Mobile_number=mobile
+                mobile_number=request.session.get("mobile"),
+
+                aadhar_number=request.session.get("aadhar"),
+
+                address=request.session.get("address")
 
             )
 
             # LOGIN SESSION
 
+            request.session['user_id'] = user.id
+
             request.session['is_logged_in'] = True
+
+            messages.success(
+                request,
+                "Login Successful"
+            )
+
+            # REDIRECT TO HOME PAGE
 
             return redirect("home")
 
@@ -95,47 +151,288 @@ def otp(request):
     return render(request, "otp.html")
 
 
-# LOGOUT VIEW
-
-def logout(request):
-
-    mobile = request.session.get("mobile")
-
-    # DELETE MOBILE NUMBER FROM DATABASE
-
-    LoginUser.objects.filter(
-
-        Mobile_number=mobile
-
-    ).delete()
-
-    # CLEAR SESSION
-
-    request.session.flush()
-
-    return redirect("login")
-
-# views.py
+# PROFILE PAGE
 
 def profile(request):
-
-    # CHECK LOGIN
 
     if not request.session.get('is_logged_in'):
 
         return redirect("login")
 
-    # GET MOBILE NUMBER
+    user_id = request.session.get("user_id")
 
-    mobile = request.session.get("mobile")
+    user = LoginUser.objects.get(id=user_id)
+
+    # FETCH BOOKINGS
+
+    darshan_bookings = DarshanBooking.objects.filter(
+        user=user
+    ).order_by('-id')
+
+    seva_bookings = SevaBooking.objects.filter(
+        user=user
+    ).order_by('-id')
+
+    donations = Donation.objects.filter(
+        user=user
+    ).order_by('-id')
 
     context = {
 
-        "mobile": mobile
+        "user": user,
+
+        "darshan_bookings": darshan_bookings,
+
+        "seva_bookings": seva_bookings,
+
+        "donations": donations
 
     }
 
-    return render(request,"profile.html",context)
+    return render(
+        request,
+        "profile.html",
+        context
+    )
 
-def darshan (request):
-    return render (request,'darshan.html')
+
+# DARSHAN BOOKING
+
+def darshan(request):
+
+    if not request.session.get('is_logged_in'):
+
+        return redirect("login")
+
+    user_id = request.session.get("user_id")
+
+    user = LoginUser.objects.get(id=user_id)
+
+    if request.method == "POST":
+
+        full_name = request.POST.get("full_name")
+
+        mobile = request.POST.get("mobile")
+
+        aadhar = request.POST.get("aadhar")
+
+        darshan_date = request.POST.get("darshan_date")
+
+        slot = request.POST.get("slot")
+
+        booking_id = "DSN" + str(
+            random.randint(10000,99999)
+        )
+
+        DarshanBooking.objects.create(
+
+            user=user,
+
+            full_name=full_name,
+
+            mobile_number=mobile,
+
+            aadhar_number=aadhar,
+
+            darshan_date=darshan_date,
+
+            slot=slot,
+
+            booking_id=booking_id
+        )
+
+        messages.success(
+            request,
+            "Darshan Ticket Booked Successfully"
+        )
+
+        return redirect("profile")
+
+    return render(request, 'darshan.html')
+
+
+# SEVA BOOKING
+
+def seva_booking(request):
+
+    if not request.session.get('is_logged_in'):
+
+        return redirect("login")
+
+    user_id = request.session.get("user_id")
+
+    user = LoginUser.objects.get(id=user_id)
+
+    if request.method == "POST":
+
+        full_name = request.POST.get("full_name")
+
+        mobile = request.POST.get("mobile")
+
+        seva_name = request.POST.get("seva_name")
+
+        seva_time = request.POST.get("seva_time")
+
+        seva_date = request.POST.get("seva_date")
+
+        booking_id = "SEVA" + str(
+            random.randint(10000,99999)
+        )
+
+        SevaBooking.objects.create(
+
+            user=user,
+
+            full_name=full_name,
+
+            mobile_number=mobile,
+
+            seva_name=seva_name,
+
+            seva_time=seva_time,
+
+            seva_date=seva_date,
+
+            booking_id=booking_id
+        )
+
+        messages.success(
+            request,
+            "Seva Booked Successfully"
+        )
+
+        return redirect("profile")
+
+    return render(request, 'seva.html')
+
+
+# DONATION
+
+def donation(request):
+
+    if not request.session.get('is_logged_in'):
+
+        return redirect("login")
+
+    user_id = request.session.get("user_id")
+
+    user = LoginUser.objects.get(id=user_id)
+
+    if request.method == "POST":
+
+        full_name = request.POST.get("full_name")
+
+        mobile = request.POST.get("mobile")
+
+        amount = request.POST.get("amount")
+
+        payment_id = str(uuid.uuid4())
+
+        Donation.objects.create(
+
+            user=user,
+
+            full_name=full_name,
+
+            mobile_number=mobile,
+
+            amount=amount,
+
+            payment_id=payment_id
+        )
+
+        messages.success(
+            request,
+            "Donation Successful"
+        )
+
+        return redirect("profile")
+
+    return render(request, 'donation.html')
+
+
+# LOGOUT
+
+def logout(request):
+
+    request.session.flush()
+
+    messages.success(
+        request,
+        "Logout Successful"
+    )
+
+    return redirect("home")
+
+
+
+# DOWNLOAD DARSHAN TICKET
+
+def download_darshan(request, id):
+
+    if not request.session.get('is_logged_in'):
+
+        return redirect('login')
+
+    booking = DarshanBooking.objects.get(id=id)
+
+    context = {
+
+        'type': 'Darshan Ticket',
+
+        'booking': booking
+    }
+
+    return render(
+        request,
+        'download.html',
+        context
+    )
+
+
+# DOWNLOAD SEVA TICKET
+
+def download_seva(request, id):
+
+    if not request.session.get('is_logged_in'):
+
+        return redirect('login')
+
+    booking = SevaBooking.objects.get(id=id)
+
+    context = {
+
+        'type': 'Seva Ticket',
+
+        'booking': booking
+    }
+
+    return render(
+        request,
+        'download.html',
+        context
+    )
+
+
+# DOWNLOAD DONATION RECEIPT
+
+def download_donation(request, id):
+
+    if not request.session.get('is_logged_in'):
+
+        return redirect('login')
+
+    booking = Donation.objects.get(id=id)
+
+    context = {
+
+        'type': 'Donation Receipt',
+
+        'booking': booking
+    }
+
+    return render(
+        request,
+        'download.html',
+        context
+    )

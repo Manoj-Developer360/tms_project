@@ -6,298 +6,291 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
     <title>Login - Srivari Seva Portal</title>
 
     <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Poppins', sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        body{
+        body {
 
-            height:100vh;
+            height: 100vh;
 
-            display:flex;
+            display: flex;
 
-            justify-content:center;
+            justify-content: center;
 
-            align-items:center;
+            align-items: center;
 
-            background:linear-gradient(
-                135deg,
-                #fff5e6,
-                #ffe0b3
-            );
+            background: linear-gradient(135deg,
+                    #fff5e6,
+                    #ffe0b3);
 
-            overflow:hidden;
+            overflow: hidden;
 
         }
 
         /* BACKGROUND GLOW */
 
-        body::before{
+        body::before {
 
-            content:"";
+            content: "";
 
-            position:absolute;
+            position: absolute;
 
-            width:500px;
+            width: 500px;
 
-            height:500px;
+            height: 500px;
 
-            background:#ffb347;
+            background: #ffb347;
 
-            border-radius:50%;
+            border-radius: 50%;
 
-            filter:blur(180px);
+            filter: blur(180px);
 
-            top:-100px;
+            top: -100px;
 
-            left:-100px;
+            left: -100px;
 
-            opacity:0.5;
+            opacity: 0.5;
 
         }
 
-        body::after{
+        body::after {
 
-            content:"";
+            content: "";
 
-            position:absolute;
+            position: absolute;
 
-            width:400px;
+            width: 400px;
 
-            height:400px;
+            height: 400px;
 
-            background:#ff7b00;
+            background: #ff7b00;
 
-            border-radius:50%;
+            border-radius: 50%;
 
-            filter:blur(180px);
+            filter: blur(180px);
 
-            bottom:-120px;
+            bottom: -120px;
 
-            right:-120px;
+            right: -120px;
 
-            opacity:0.3;
+            opacity: 0.3;
 
         }
 
         /* LOGIN CARD */
 
-        .login-container{
+        .login-container {
 
-            position:relative;
+            position: relative;
 
-            z-index:10;
+            z-index: 10;
 
         }
 
-        .login-box{
+        .login-box {
 
-            width:430px;
+            width: 430px;
 
-            background:rgba(255,255,255,0.95);
+            background: rgba(255, 255, 255, 0.95);
 
-            backdrop-filter:blur(10px);
+            backdrop-filter: blur(10px);
 
-            padding:45px;
+            padding: 45px;
 
-            border-radius:28px;
+            border-radius: 28px;
 
-            text-align:center;
+            text-align: center;
 
-            box-shadow:0 20px 50px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
 
-            border:1px solid rgba(255,255,255,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.4);
 
         }
 
         /* LOGO */
 
-        .login-box img{
+        .login-box img {
 
-            width:120px;
+            width: 120px;
 
-            height:120px;
+            height: 120px;
 
-            object-fit:contain;
+            object-fit: contain;
 
-            margin-bottom:20px;
+            margin-bottom: 20px;
 
-            animation:float 3s ease-in-out infinite;
+            animation: float 3s ease-in-out infinite;
 
         }
 
-        @keyframes float{
+        @keyframes float {
 
-            0%{
-                transform:translateY(0px);
+            0% {
+                transform: translateY(0px);
             }
 
-            50%{
-                transform:translateY(-8px);
+            50% {
+                transform: translateY(-8px);
             }
 
-            100%{
-                transform:translateY(0px);
+            100% {
+                transform: translateY(0px);
             }
 
         }
 
         /* TITLE */
 
-        .login-box h2{
+        .login-box h2 {
 
-            color:#8b2500;
+            color: #8b2500;
 
-            font-size:34px;
+            font-size: 34px;
 
-            margin-bottom:10px;
+            margin-bottom: 10px;
 
-            font-weight:700;
+            font-weight: 700;
 
         }
 
-        .login-box p{
+        .login-box p {
 
-            color:#666;
+            color: #666;
 
-            font-size:15px;
+            font-size: 15px;
 
-            margin-bottom:28px;
+            margin-bottom: 28px;
 
-            line-height:24px;
+            line-height: 24px;
 
         }
 
         /* INPUT */
 
-        .login-box input{
+        .login-box input {
 
-            width:100%;
+            width: 100%;
 
-            padding:16px;
+            padding: 16px;
 
-            border:2px solid #ffd27f;
+            border: 2px solid #ffd27f;
 
-            border-radius:14px;
+            border-radius: 14px;
 
-            outline:none;
+            outline: none;
 
-            font-size:16px;
+            font-size: 16px;
 
-            margin-bottom:20px;
+            margin-bottom: 20px;
 
-            transition:0.3s;
+            transition: 0.3s;
 
         }
 
-        .login-box input:focus{
+        .login-box input:focus {
 
-            border-color:#ff9800;
+            border-color: #ff9800;
 
-            box-shadow:0 0 15px rgba(255,152,0,0.3);
+            box-shadow: 0 0 15px rgba(255, 152, 0, 0.3);
 
         }
 
         /* BUTTON */
 
-        .login-box button{
+        .login-box button {
 
-            width:100%;
+            width: 100%;
 
-            padding:16px;
+            padding: 16px;
 
-            border:none;
+            border: none;
 
-            border-radius:14px;
+            border-radius: 14px;
 
-            background:linear-gradient(
-                135deg,
-                #b45309,
-                #ea580c
-            );
+            background: linear-gradient(135deg,
+                    #b45309,
+                    #ea580c);
 
-            color:white;
+            color: white;
 
-            font-size:17px;
+            font-size: 17px;
 
-            font-weight:600;
+            font-weight: 600;
 
-            cursor:pointer;
+            cursor: pointer;
 
-            transition:0.3s;
+            transition: 0.3s;
 
         }
 
-        .login-box button:hover{
+        .login-box button:hover {
 
-            transform:translateY(-3px);
+            transform: translateY(-3px);
 
-            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 
         }
 
         /* MESSAGES */
 
-        .error{
+        .error {
 
-            background:#fff0f0;
+            background: #fff0f0;
 
-            color:#d10000;
+            color: #d10000;
 
-            padding:12px;
+            padding: 12px;
 
-            border-radius:12px;
+            border-radius: 12px;
 
-            margin-bottom:18px;
+            margin-bottom: 18px;
 
-            font-size:14px;
+            font-size: 14px;
 
-            font-weight:600;
+            font-weight: 600;
 
         }
 
-        .success{
+        .success {
 
-            background:#edfdf3;
+            background: #edfdf3;
 
-            color:#008a2e;
+            color: #008a2e;
 
-            padding:12px;
+            padding: 12px;
 
-            border-radius:12px;
+            border-radius: 12px;
 
-            margin-bottom:18px;
+            margin-bottom: 18px;
 
-            font-size:14px;
+            font-size: 14px;
 
-            font-weight:600;
+            font-weight: 600;
 
         }
 
         /* MOBILE */
 
-        @media(max-width:500px){
+        @media(max-width:500px) {
 
-            .login-box{
+            .login-box {
 
-                width:90%;
+                width: 90%;
 
-                padding:30px;
+                padding: 30px;
 
             }
 
         }
-
     </style>
 
 </head>
@@ -308,8 +301,7 @@
 
         <div class="login-box">
 
-            <img src="{% static 'logo.png' %}"
-                 alt="Temple Logo">
+            <img src="{% static 'logo.png' %}" alt="Temple Logo">
 
             <h2>Srivari Seva Portal</h2>
 
@@ -322,15 +314,15 @@
 
             {% if messages %}
 
-                {% for message in messages %}
+            {% for message in messages %}
 
-                    <div class="{{ message.tags }}">
+            <div class="{{ message.tags }}">
 
-                        {{ message }}
+                {{ message }}
 
-                    </div>
+            </div>
 
-                {% endfor %}
+            {% endfor %}
 
             {% endif %}
 
@@ -338,11 +330,15 @@
 
                 {% csrf_token %}
 
-                <input type="text"
-                       name="mobile"
-                       placeholder="Enter Mobile Number"
-                       maxlength="10"
-                       required>
+                <input type="text" name="name" placeholder="Enter Full Name" required>
+
+                <input type="email" name="email" placeholder="Enter Email Address" required>
+
+                <input type="text" name="mobile" placeholder="Enter Mobile Number" maxlength="10" required>
+
+                <input type="text" name="aadhar" placeholder="Enter Aadhar Number" maxlength="12" required>
+
+                <textarea name="address" placeholder="Enter Address" required></textarea>
 
                 <button type="submit">
 

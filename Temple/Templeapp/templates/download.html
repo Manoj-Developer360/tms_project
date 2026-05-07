@@ -1,0 +1,324 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ type }}</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+
+            background:#fff7ed;
+
+            padding:40px;
+        }
+
+        .ticket-container{
+
+            max-width:700px;
+
+            margin:auto;
+
+            background:white;
+
+            border-radius:25px;
+
+            overflow:hidden;
+
+            box-shadow:0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .ticket-header{
+
+            background:linear-gradient(
+                135deg,
+                #ea580c,
+                #c2410c
+            );
+
+            color:white;
+
+            text-align:center;
+
+            padding:35px;
+        }
+
+        .ticket-header img{
+
+            width:100px;
+
+            margin-bottom:15px;
+        }
+
+        .ticket-header h1{
+
+            font-size:34px;
+
+            margin-bottom:10px;
+        }
+
+        .ticket-body{
+
+            padding:40px;
+        }
+
+        .info-box{
+
+            background:#fffaf5;
+
+            border:2px solid #fed7aa;
+
+            border-radius:16px;
+
+            padding:18px;
+
+            margin-bottom:18px;
+        }
+
+        .info-box h3{
+
+            color:#9a3412;
+
+            margin-bottom:10px;
+        }
+
+        .info-box p{
+
+            color:#444;
+
+            line-height:28px;
+        }
+
+        .download-btn{
+
+            width:100%;
+
+            padding:16px;
+
+            border:none;
+
+            border-radius:14px;
+
+            background:#16a34a;
+
+            color:white;
+
+            font-size:17px;
+
+            font-weight:600;
+
+            cursor:pointer;
+
+            margin-top:20px;
+        }
+
+        @media print{
+
+            .download-btn{
+
+                display:none;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="ticket-container">
+
+        <div class="ticket-header">
+
+            <img src="{% static 'logo.png' %}"
+                 alt="Temple Logo">
+
+            <h1>
+
+                {{ type }}
+
+            </h1>
+
+            <p>
+
+                Srivari Seva Portal
+
+            </p>
+
+        </div>
+
+        <div class="ticket-body">
+
+            {% if type == 'Darshan Ticket' %}
+
+                <div class="info-box">
+
+                    <h3>Booking Details</h3>
+
+                    <p>
+
+                        <strong>Booking ID:</strong>
+                        {{ booking.booking_id }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Full Name:</strong>
+                        {{ booking.full_name }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Mobile Number:</strong>
+                        {{ booking.mobile_number }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Aadhar Number:</strong>
+                        {{ booking.aadhar_number }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Darshan Date:</strong>
+                        {{ booking.darshan_date }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Darshan Slot:</strong>
+                        {{ booking.slot }}
+
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+
+            {% if type == 'Seva Ticket' %}
+
+                <div class="info-box">
+
+                    <h3>Seva Details</h3>
+
+                    <p>
+
+                        <strong>Booking ID:</strong>
+                        {{ booking.booking_id }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Full Name:</strong>
+                        {{ booking.full_name }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Mobile Number:</strong>
+                        {{ booking.mobile_number }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Seva Name:</strong>
+                        {{ booking.seva_name }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Seva Time:</strong>
+                        {{ booking.seva_time }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Seva Date:</strong>
+                        {{ booking.seva_date }}
+
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+
+            {% if type == 'Donation Receipt' %}
+
+                <div class="info-box">
+
+                    <h3>Donation Receipt</h3>
+
+                    <p>
+
+                        <strong>Full Name:</strong>
+                        {{ booking.full_name }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Mobile Number:</strong>
+                        {{ booking.mobile_number }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Donation Amount:</strong>
+                        ₹{{ booking.amount }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Payment ID:</strong>
+                        {{ booking.payment_id }}
+
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+            <button onclick="window.print()"
+                    class="download-btn">
+
+                Download / Print
+
+            </button>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

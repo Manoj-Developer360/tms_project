@@ -24,5 +24,27 @@ urlpatterns = [
     path('otp',views.otp,name='otp'),
     path('logout',views.logout,name='logout'),
     path("profile", views.profile, name="profile"),
-    path('darshan',views.darshan,name='darshan')
+    path('darshan',views.darshan,name='darshan'),
+    path('seva',views.seva_booking,name='seva_booking'),
+    path('donation',views.donation,name='donation'),
+
+    # DOWNLOAD PAGES
+
+    path(
+        'download/darshan/<int:id>/',
+        views.download_darshan,
+        name='download_darshan'
+    ),
+
+    path(
+        'download/seva/<int:id>/',
+        views.download_seva,
+        name='download_seva'
+    ),
+
+    path(
+        'download/donation/<int:id>/',
+        views.download_donation,
+        name='download_donation'
+    ),
 ]
