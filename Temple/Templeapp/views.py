@@ -1,35 +1,40 @@
+# views.py
+
 import random
 import uuid
 
-from django.shortcuts import render, redirect 
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import logout
 
 from .models import (
-
     LoginUser,
-
     DarshanBooking,
-
     SevaBooking,
-
     Donation
-
 )
+
 
 # HOME PAGE
 
 def home(request):
+
     return render(request, 'home.html')
 
+
 def festival(request):
+
     return render(request, 'festival.html')
 
+
 def gallery(request):
-    return render(request,'gallery.html')
+
+    return render(request, 'gallery.html')
+
 
 def contact(request):
-    return render(request,'contact.html')
+
+    return render(request, 'contact.html')
+
 
 # LOGIN PAGE
 
@@ -47,41 +52,22 @@ def login(request):
 
         address = request.POST.get("address")
 
-        # CHECK MOBILE EXISTS
+        # CHECK EXISTING USER
 
-        if LoginUser.objects.filter(
-            mobile_number=mobile
-        ).exists():
-
-            messages.error(
-                request,
-                "Mobile Number Already Registered"
-            )
-
-            return redirect("login")
-
-        # CHECK AADHAR EXISTS
-
-        if LoginUser.objects.filter(
+        existing_user = LoginUser.objects.filter(
+            mobile_number=mobile,
             aadhar_number=aadhar
-        ).exists():
-
-            messages.error(
-                request,
-                "Aadhar Number Already Registered"
-            )
-
-            return redirect("login")
+        ).first()
 
         # GENERATE OTP
 
         otp = random.randint(100000, 999999)
 
-        print("OTP :", otp)
-
         # STORE SESSION
 
         request.session['otp'] = str(otp)
+
+        request.session['display_otp'] = str(otp)
 
         request.session['name'] = name
 
@@ -93,10 +79,25 @@ def login(request):
 
         request.session['address'] = address
 
-        messages.success(
-            request,
-            "OTP Sent Successfully"
-        )
+        # EXISTING USER CHECK
+
+        if existing_user:
+
+            request.session['existing_user_id'] = existing_user.id
+
+            messages.success(
+                request,
+                "Welcome Back! OTP Sent Successfully"
+            )
+
+        else:
+
+            request.session['existing_user_id'] = None
+
+            messages.success(
+                request,
+                "New User OTP Sent Successfully"
+            )
 
         return redirect("otp")
 
@@ -117,19 +118,35 @@ def otp(request):
 
         if entered_otp == session_otp:
 
-            user = LoginUser.objects.create(
-
-                name=request.session.get("name"),
-
-                email=request.session.get("email"),
-
-                mobile_number=request.session.get("mobile"),
-
-                aadhar_number=request.session.get("aadhar"),
-
-                address=request.session.get("address")
-
+            existing_user_id = request.session.get(
+                "existing_user_id"
             )
+
+            # EXISTING USER LOGIN
+
+            if existing_user_id:
+
+                user = LoginUser.objects.get(
+                    id=existing_user_id
+                )
+
+            else:
+
+                # CREATE NEW USER
+
+                user = LoginUser.objects.create(
+
+                    name=request.session.get("name"),
+
+                    email=request.session.get("email"),
+
+                    mobile_number=request.session.get("mobile"),
+
+                    aadhar_number=request.session.get("aadhar"),
+
+                    address=request.session.get("address")
+
+                )
 
             # LOGIN SESSION
 
@@ -137,12 +154,16 @@ def otp(request):
 
             request.session['is_logged_in'] = True
 
+            # CLEAR OTP
+
+            request.session.pop('otp', None)
+
+            request.session.pop('display_otp', None)
+
             messages.success(
                 request,
                 "Login Successful"
             )
-
-            # REDIRECT TO HOME PAGE
 
             return redirect("home")
 
@@ -169,8 +190,6 @@ def profile(request):
     user_id = request.session.get("user_id")
 
     user = LoginUser.objects.get(id=user_id)
-
-    # FETCH BOOKINGS
 
     darshan_bookings = DarshanBooking.objects.filter(
         user=user
@@ -228,7 +247,7 @@ def darshan(request):
         slot = request.POST.get("slot")
 
         booking_id = "DSN" + str(
-            random.randint(10000,99999)
+            random.randint(10000, 99999)
         )
 
         DarshanBooking.objects.create(
@@ -246,6 +265,7 @@ def darshan(request):
             slot=slot,
 
             booking_id=booking_id
+
         )
 
         messages.success(
@@ -281,7 +301,7 @@ def seva_booking(request):
         seva_date = request.POST.get("seva_date")
 
         booking_id = "SEVA" + str(
-            random.randint(10000,99999)
+            random.randint(10000, 99999)
         )
 
         SevaBooking.objects.create(
@@ -308,6 +328,7 @@ def seva_booking(request):
         return redirect("profile")
 
     return render(request, 'seva.html')
+
 
 # DONATION
 
@@ -375,7 +396,6 @@ def logout(request):
     )
 
     return redirect("home")
-
 
 
 # DOWNLOAD DARSHAN TICKET
@@ -448,21 +468,3 @@ def download_donation(request, id):
         'download.html',
         context
     )
-
-def user_logout(request):
-
-    if request.user.is_authenticated:
-
-        # Delete user related bookings
-        DarshanBooking.objects.filter(user=request.user).delete()
-
-        SevaBooking.objects.filter(user=request.user).delete()
-
-        Donation.objects.filter(user=request.user).delete()
-
-        # Delete user account
-        request.user.delete()
-
-    logout(request)
-
-    return redirect('login')
