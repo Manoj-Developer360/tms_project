@@ -4,105 +4,444 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Srivari Seva Portal</title>
-    <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <link rel="icon"
+          type="image/png"
+          href="{% static 'logo.png' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'style.css' %}">
 </head>
 
 <body>
 
-    <header>
-        <nav>
-            <div>
-                <div>
-                    <img src="{% static 'logo.png' %}" alt="Temple Logo" width="95" height="90">
-                    <div>
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <nav class="navbar">
+
+            <div class="nav-container">
+
+                <!-- LOGO -->
+
+                <div class="logo-section">
+
+                    <img src="{% static 'logo.png' %}"
+                         alt="Temple Logo"
+                         width="90"
+                         height="90">
+
+                    <div class="logo-text">
                         <h1>Srivari Seva Portal</h1>
                         <p>Online Darshan & Temple Services</p>
                     </div>
+
                 </div>
-                <div>
-                    <ul>
+
+                <!-- MENU -->
+
+                <div class="menu-section">
+
+                    <ul class="nav-links">
+
                         <li><a href="{% url 'home' %}">Home</a></li>
+
                         <li><a href="{% url 'about' %}">About Temple</a></li>
+
                         <li><a href="{% url 'darshan' %}">Darshan</a></li>
+
                         <li><a href="{% url 'seva_booking' %}">Seva</a></li>
+
                         <li><a href="{% url 'festival' %}">Festivals</a></li>
+
                         <li><a href="{% url 'donation' %}">Donation</a></li>
+
                         <li><a href="{% url 'gallery' %}">Gallery</a></li>
+
                         <li><a href="{% url 'contact' %}">Contact</a></li>
+
                     </ul>
+
                 </div>
-                <div>
+
+                <!-- LOGIN / PROFILE -->
+
+                <div class="profile-section">
 
                     {% if request.session.is_logged_in %}
 
                     <a href="{% url 'profile' %}">
 
-                        <img src="{% static 'profile.png' %}" alt="Profile" width="55" height="55" style="
-                    border-radius:50%;
-                    border:3px solid #ffd700;
-                    cursor:pointer;
-                 ">
+                        <img src="{% static 'profile.png' %}"
+                             alt="Profile"
+                             class="profile-img">
 
                     </a>
 
                     {% else %}
 
                     <a href="{% url 'login' %}">
-                        <button>Login</button>
+                        <button class="login-btn">Login</button>
                     </a>
 
                     {% endif %}
 
                 </div>
+
             </div>
+
         </nav>
+
     </header>
 
-    <section>
+    <!-- HERO SECTION -->
 
-        <div>
-            <center>
-                <img src="{% static 'banner.png' %}" class="banner w-100" alt="Temple Banner">
-            </center>
+    <section class="hero-section">
+
+        <div class="hero-overlay">
+
+            <div class="hero-content">
+
+                <h1>
+                    Welcome to <span>Srivari Seva Portal</span>
+                </h1>
+
+                <p>
+                    Experience divine blessings through online darshan booking,
+                    seva reservations, donations, temple festivals,
+                    and spiritual services from anywhere.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="{% url 'darshan' %}">
+                        <button class="hero-btn">
+                            Book Darshan
+                        </button>
+                    </a>
+
+                    <a href="{% url 'seva_booking' %}">
+                        <button class="hero-btn secondary-btn">
+                            Book Seva
+                        </button>
+                    </a>
+
+                </div>
+
+            </div>
+
         </div>
+
+        <img src="{% static 'banner.png' %}"
+             class="hero-banner"
+             alt="Temple Banner">
+
     </section>
 
-    <footer>
-        <div>
-            <div>
-                <h2> Srivari Seva Portal </h2>
-                <p> Connecting devotees with divine blessings through
+    <!-- QUICK SERVICES -->
+
+    <section class="services-section">
+
+        <div class="section-title">
+            <h2>Our Spiritual Services</h2>
+            <p>Devotional services for all devotees</p>
+        </div>
+
+        <div class="services-container">
+
+            <div class="service-card">
+
+                <img src="{% static 'darshan.png' %}"
+                     alt="Darshan">
+
+                <h3>Darshan Booking</h3>
+
+                <p>
+                    Book your temple darshan quickly and
+                    avoid long waiting queues.
+                </p>
+
+                <a href="{% url 'darshan' %}">
+                    <button>Book Now</button>
+                </a>
+
+            </div>
+
+            <div class="service-card">
+
+                <img src="{% static 'seva.png' %}"
+                     alt="Seva">
+
+                <h3>Seva Booking</h3>
+
+                <p>
+                    Participate in sacred temple rituals
+                    and special spiritual sevas.
+                </p>
+
+                <a href="{% url 'seva_booking' %}">
+                    <button>View Sevas</button>
+                </a>
+
+            </div>
+
+            <div class="service-card">
+
+                <img src="{% static 'festival.png' %}"
+                     alt="Festivals">
+
+                <h3>Temple Festivals</h3>
+
+                <p>
+                    Stay updated with upcoming festivals,
+                    poojas, and temple celebrations.
+                </p>
+
+                <a href="{% url 'festival' %}">
+                    <button>Explore</button>
+                </a>
+
+            </div>
+
+            <div class="service-card">
+
+                <img src="{% static 'donation.png' %}"
+                     alt="Donation">
+
+                <h3>Online Donation</h3>
+
+                <p>
+                    Contribute to temple development and
+                    receive divine blessings.
+                </p>
+
+                <a href="{% url 'donation' %}">
+                    <button>Donate</button>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT SECTION -->
+
+    <section class="about-section">
+
+        <div class="about-container">
+
+            <div class="about-image">
+
+                <img src="{% static 'temple.png' %}"
+                     alt="Temple Image">
+
+            </div>
+
+            <div class="about-content">
+
+                <h2>About Our Temple</h2>
+
+                <p>
+                    Srivari Temple is a sacred spiritual destination
+                    dedicated to Lord Venkateswara Swamy.
+                    Thousands of devotees visit the temple every year
+                    seeking blessings, peace, and prosperity.
+                </p>
+
+                <p>
+                    Through this portal, devotees can conveniently
+                    access temple services online including darshan,
+                    seva booking, donations, and festival updates.
+                </p>
+
+                <a href="{% url 'about' %}">
+                    <button>Read More</button>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- COUNTER SECTION -->
+
+    <section class="counter-section">
+
+        <div class="counter-container">
+
+            <div class="counter-box">
+                <h2>50K+</h2>
+                <p>Devotees Served</p>
+            </div>
+
+            <div class="counter-box">
+                <h2>100+</h2>
+                <p>Temple Sevas</p>
+            </div>
+
+            <div class="counter-box">
+                <h2>25+</h2>
+                <p>Festivals Every Year</p>
+            </div>
+
+            <div class="counter-box">
+                <h2>24/7</h2>
+                <p>Online Services</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- GALLERY PREVIEW -->
+
+    <section class="gallery-section">
+
+        <div class="section-title">
+
+            <h2>Temple Gallery</h2>
+
+            <p>Divine moments from temple celebrations</p>
+
+        </div>
+
+        <div class="gallery-container">
+
+            <img src="{% static 'gallery1.jpg' %}"
+                 alt="Gallery Image">
+
+            <img src="{% static 'gallery2.jpg' %}"
+                 alt="Gallery Image">
+
+            <img src="{% static 'gallery3.jpg' %}"
+                 alt="Gallery Image">
+
+            <img src="{% static 'gallery4.jpg' %}"
+                 alt="Gallery Image">
+
+        </div>
+
+        <div class="gallery-btn">
+
+            <a href="{% url 'gallery' %}">
+                <button>View Full Gallery</button>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- DEVOTEE QUOTE -->
+
+    <section class="quote-section">
+
+        <div class="quote-container">
+
+            <h2>
+                "Faith, Devotion & Divine Blessings"
+            </h2>
+
+            <p>
+                May Lord Venkateswara bless every devotee
+                with happiness, peace, and prosperity.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <!-- ABOUT -->
+
+            <div class="footer-box">
+
+                <h2>Srivari Seva Portal</h2>
+
+                <p>
+                    Connecting devotees with divine blessings through
                     online darshan booking, seva services, donations,
-                    and spiritual temple experiences.</p>
+                    and spiritual temple experiences.
+                </p>
+
             </div>
 
-            <div>
-                <h3> Quick Links </h3>
+            <!-- QUICK LINKS -->
+
+            <div class="footer-box">
+
+                <h3>Quick Links</h3>
+
                 <ul>
+
                     <li><a href="{% url 'home' %}">Home</a></li>
+
                     <li><a href="{% url 'darshan' %}">Darshan</a></li>
+
                     <li><a href="{% url 'seva_booking' %}">Seva</a></li>
+
                     <li><a href="{% url 'festival' %}">Festivals</a></li>
+
                     <li><a href="{% url 'donation' %}">Donation</a></li>
+
                 </ul>
+
             </div>
 
-            <div>
-                <h3>Follow Us</h3>
-                <a href="#">Facebook</a><br><br>
-                <a href="#">Instagram</a><br><br>
-                <a href="#">YouTube</a>
+            <!-- CONTACT -->
+
+            <div class="footer-box">
+
+                <h3>Contact Info</h3>
+
+                <p>Email : support@srivariseva.com</p>
+
+                <p>Phone : +91 9876543210</p>
+
+                <p>Location : Srivari Seva Portal Office, Tirupati Temple Campus, Andhra Pradesh, India</p>
+
             </div>
+
+            <!-- SOCIAL -->
+
+            <div class="footer-box">
+
+                <h3>Follow Us</h3>
+
+                <a href="#">Facebook</a><br><br>
+
+                <a href="#">Instagram</a><br><br>
+
+                <a href="#">YouTube</a>
+
+            </div>
+
         </div>
 
         <hr>
-        <div>
-            <p> © 2026 Srivari Seva Portal. All Rights Reserved.</p>
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Srivari Seva Portal.
+                All Rights Reserved.
+            </p>
+
         </div>
+
     </footer>
+
 </body>
 
 </html>
