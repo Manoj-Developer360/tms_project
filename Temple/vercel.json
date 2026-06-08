@@ -1,14 +1,15 @@
 {
+  "version": 2,
   "builds": [
     {
-      "src": "tms_project/wsgi.py",
+      "src": "Temple/wsgi.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "tms_project/wsgi.py"
+      "dest": "Temple/wsgi.py"
     }
   ]
 }
