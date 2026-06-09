@@ -14,6 +14,322 @@
     <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/png">
 
     <style>
+
+        /* ================= GOOGLE FONT ================= */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+    linear-gradient(
+        rgba(255,247,237,0.95),
+        rgba(255,247,237,0.96)
+    ),
+    url("../images/temple-bg.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
+    color:#1f2937;
+    overflow-x:hidden;
+}
+
+/* ================= GLOBAL ================= */
+a{text-decoration:none;}
+
+section{padding:90px 8%;}
+
+/* ================= HEADER ================= */
+.header{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:9999;
+    background:linear-gradient(135deg,rgba(55,20,15,0.96),rgba(90,25,15,0.94));
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,180,120,0.12);
+    box-shadow:0 10px 40px rgba(0,0,0,0.18);
+}
+
+.nav-container{
+    width:90%;
+    margin:auto;
+    padding:16px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* ================= LOGO ================= */
+.logo-section{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo-section img{
+    width:72px;
+    height:72px;
+    object-fit:contain;
+    filter:drop-shadow(0 0 10px rgba(255,160,70,0.35));
+}
+
+.logo-text h1{
+    font-family:'Cinzel',serif;
+    font-size:30px;
+    color:#fff7ed;
+}
+
+.logo-text p{
+    color:#fbc9a7;
+    font-size:13px;
+}
+
+/* ================= NAV LINKS ================= */
+.nav-links{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#fff3e0;
+    font-weight:600;
+    position:relative;
+}
+
+.nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0%;
+    height:3px;
+    background:linear-gradient(90deg,#ffb347,#ff7a00);
+    transition:0.3s;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+/* ================= PROFILE ================= */
+.profile-section{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.login-btn{
+    padding:13px 28px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(135deg,#ff8c00,#d9480f);
+    color:white;
+    cursor:pointer;
+}
+
+/* ================= MOBILE MENU ICON ================= */
+.menu-toggle{
+    display:none;
+    font-size:26px;
+    color:#fff3e0;
+    cursor:pointer;
+    padding:6px 10px;
+    border-radius:8px;
+    transition:background 0.2s;
+}
+.menu-toggle:hover{
+    background:rgba(255,179,71,0.15);
+}
+
+/* Hidden on desktop, shown only inside mobile drawer */
+.mobile-login-wrap{
+    display:none;
+}
+
+/* ================= HERO ================= */
+.hero-section{
+    position:relative;
+    height:100vh;
+}
+
+.hero-banner{
+    width:1520px;
+    height:805px;
+    margin-left:-121px;
+    object-fit:cover;
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+}
+
+/* ================= SERVICES ================= */
+.services-container{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+}
+
+/* ================= FOOTER ================= */
+.footer{
+    background:linear-gradient(135deg,#1a0705,#3b0f0a,#5a160e);
+    padding:80px 8% 30px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* TABLET */
+@media(max-width:992px){
+
+    .nav-container{
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+        position:relative;
+    }
+
+    .hero-content{
+        width:85%;
+    }
+}
+
+/* MOBILE NAV */
+@media(max-width:900px){
+
+    /* Shrink logo so it fits on one line with the hamburger */
+    .logo-section img{
+        width:44px;
+        height:44px;
+    }
+
+    .logo-text h1{
+        font-size:16px;
+        line-height:1.2;
+    }
+
+    .logo-text p{
+        font-size:10px;
+    }
+
+    /* Show hamburger */
+    .menu-toggle{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        order:3;           /* push to far right */
+    }
+
+    /* Hide desktop profile — will show inside drawer instead */
+    .profile-section{
+        display:none;
+    }
+
+    /* Full-width slide-down drawer */
+    .menu-section{
+        position:absolute;
+        top:100%;           /* sits right below the header bar */
+        left:0;
+        width:100%;
+        background:linear-gradient(160deg,#2d0a07,#5a160e);
+        border-top:1px solid rgba(255,179,71,0.18);
+        box-shadow:0 12px 30px rgba(0,0,0,0.35);
+        display:none;
+        flex-direction:column;
+        align-items:center;
+        padding:24px 0 28px;
+        z-index:9998;
+        gap:0;
+    }
+
+    .menu-section.active{
+        display:flex;
+    }
+
+    /* Stack nav links vertically */
+    .nav-links{
+        flex-direction:column;
+        gap:0;
+        text-align:center;
+        width:100%;
+    }
+
+    .nav-links li{
+        width:100%;
+        border-bottom:1px solid rgba(255,179,71,0.08);
+    }
+
+    .nav-links li:first-child{
+        border-top:1px solid rgba(255,179,71,0.08);
+    }
+
+    .nav-links a{
+        display:block;
+        padding:14px 0;
+        font-size:15px;
+        font-weight:600;
+        color:#fff3e0;
+        transition:background 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover{
+        background:rgba(255,179,71,0.08);
+        color:#ffb347;
+    }
+
+    /* Underline animation not needed on mobile — remove */
+    .nav-links a::after{
+        display:none;
+    }
+
+    /* Login button inside drawer */
+    .mobile-login-wrap{
+        display:flex;
+        justify-content:center;
+        margin-top:22px;
+    }
+
+    .mobile-login-wrap .login-btn{
+        padding:12px 36px;
+        font-size:15px;
+    }
+}
+
+/* SMALL MOBILE */
+@media(max-width:600px){
+
+    section{
+        padding:70px 5%;
+    }
+
+    .logo-text h1{
+        font-size:14px;
+    }
+
+    .logo-text p{
+        display:none;   /* hide subtitle on very small screens */
+    }
+
+    .hero-content h1{
+        font-size:38px;
+    }
+
+    .services-container{
+        grid-template-columns:1fr;
+    }
+}
         /* ================= GOOGLE FONT ================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
@@ -904,9 +1220,10 @@ section{
 
     .nav-container{
 
-        flex-direction:column;
-
-        gap:20px;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+        position:relative;
     }
 
     .hero-content{
@@ -1006,6 +1323,11 @@ section{
 
                 </div>
 
+                <!-- HAMBURGER TOGGLE (Mobile) -->
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fa-solid fa-bars" id="menu-icon"></i>
+                </div>
+
                 <!-- MENU -->
 
                 <div class="menu-section">
@@ -1029,6 +1351,19 @@ section{
                         <li><a href="{% url 'contact' %}">Contact</a></li>
 
                     </ul>
+
+                    <!-- LOGIN BUTTON INSIDE MOBILE DRAWER -->
+                    <div class="mobile-login-wrap">
+                        {% if request.session.is_logged_in %}
+                        <a href="{% url 'profile' %}">
+                            <img src="{% static 'profile.png' %}" alt="Profile" class="profile-img">
+                        </a>
+                        {% else %}
+                        <a href="{% url 'login' %}">
+                            <button class="login-btn">Login</button>
+                        </a>
+                        {% endif %}
+                    </div>
 
                 </div>
 
@@ -1361,6 +1696,25 @@ section{
     </div>
 
 </footer>
+
+<script>
+function toggleMenu() {
+    const menu = document.querySelector(".menu-section");
+    const icon = document.getElementById("menu-icon");
+    menu.classList.toggle("active");
+    icon.className = menu.classList.contains("active")
+        ? "fa-solid fa-xmark"
+        : "fa-solid fa-bars";
+}
+
+// Close menu when a nav link is clicked
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.querySelector(".menu-section").classList.remove("active");
+        document.getElementById("menu-icon").className = "fa-solid fa-bars";
+    });
+});
+</script>
 
 </body>
 
