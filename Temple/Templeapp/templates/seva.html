@@ -1,747 +1,201 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seva Booking - Srivari Seva Portal</title>
-
-    <link rel="icon"
-          type="image/png"
-          href="{% static 'logo.png' %}">
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
+    <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Poppins',sans-serif;
-        }
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
         body{
-
-            background:
-                linear-gradient(
-                    rgba(255,247,237,0.92),
-                    rgba(255,247,237,0.92)
-                ),
-                url("{% static 'temple-bg.jpg' %}");
-
-            background-size:cover;
-
-            background-position:center;
-
-            background-attachment:fixed;
-
-            min-height:100vh;
-
-            color:#1f2937;
-
+            background:linear-gradient(rgba(255,247,237,0.92),rgba(255,247,237,0.92)),url("{% static 'temple-bg.jpg' %}");
+            background-size:cover;background-position:center;background-attachment:fixed;
+            min-height:100vh;color:#1f2937;
         }
 
-        /* ================= NAVBAR ================= */
-
+        /* ===== NAVBAR ===== */
         .navbar{
-
-            width:100%;
-
-            padding:18px 70px;
-
-            display:flex;
-
-            justify-content:space-between;
-
-            align-items:center;
-
-            background:rgba(255,255,255,0.92);
-
-            backdrop-filter:blur(14px);
-
-            box-shadow:0 4px 30px rgba(0,0,0,0.08);
-
-            position:sticky;
-
-            top:0;
-
-            z-index:999;
-
+            width:100%;padding:16px 60px;display:flex;justify-content:space-between;align-items:center;
+            background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);
+            box-shadow:0 4px 30px rgba(0,0,0,0.08);position:sticky;top:0;z-index:999;
         }
-
-        .logo-section{
-
-            display:flex;
-
-            align-items:center;
-
-            gap:16px;
-
-        }
-
-        .logo-section img{
-
-            width:75px;
-            height:75px;
-
-            object-fit:contain;
-
-        }
-
-        .logo-text h2{
-
-            color:#7c2d12;
-
-            font-size:30px;
-
-            font-weight:700;
-
-        }
-
-        .logo-text p{
-
-            color:#6b7280;
-
-            font-size:14px;
-
-            margin-top:3px;
-
-        }
-
+        .logo-section{display:flex;align-items:center;gap:14px;}
+        .logo-section img{width:60px;height:60px;object-fit:contain;}
+        .logo-text h2{color:#7c2d12;font-size:22px;font-weight:700;}
+        .logo-text p{color:#6b7280;font-size:13px;margin-top:2px;}
         .back-btn{
-
-            padding:13px 24px;
-
-            border-radius:14px;
-
-            background:linear-gradient(
-                135deg,
-                #f97316,
-                #ea580c
-            );
-
-            color:white;
-
-            text-decoration:none;
-
-            font-weight:600;
-
-            transition:0.3s;
-
-            box-shadow:0 10px 25px rgba(249,115,22,0.2);
-
+            padding:11px 22px;border-radius:12px;background:linear-gradient(135deg,#f97316,#ea580c);
+            color:white;text-decoration:none;font-weight:600;transition:0.3s;
+            box-shadow:0 8px 20px rgba(249,115,22,0.2);font-size:14px;white-space:nowrap;
         }
+        .back-btn:hover{transform:translateY(-2px);}
 
-        .back-btn:hover{
+        /* ===== MAIN ===== */
+        .main-container{width:72%;margin:44px auto;}
 
-            transform:translateY(-3px);
-
-        }
-
-        /* ================= MAIN ================= */
-
-        .main-container{
-
-            width:75%;
-
-            margin:50px auto;
-
-        }
-
-        /* ================= BOOKING CARD ================= */
-
+        /* ===== BOOKING CARD ===== */
         .booking-card{
-
-            width:100%;
-
-            background:rgba(255,255,255,0.93);
-
-            border-radius:35px;
-
-            padding:50px;
-
-            box-shadow:0 20px 50px rgba(0,0,0,0.08);
-
-            position:relative;
-
-            overflow:hidden;
-
+            width:100%;background:rgba(255,255,255,0.95);border-radius:32px;padding:48px;
+            box-shadow:0 20px 50px rgba(0,0,0,0.08);position:relative;overflow:hidden;
         }
-
         .booking-card::before{
-
-            content:'';
-
-            position:absolute;
-
-            width:300px;
-            height:300px;
-
-            background:rgba(249,115,22,0.08);
-
-            border-radius:50%;
-
-            top:-130px;
-            right:-120px;
-
+            content:'';position:absolute;width:280px;height:280px;
+            background:rgba(249,115,22,0.07);border-radius:50%;top:-120px;right:-110px;
         }
 
-        /* ================= TOP ================= */
-
+        /* ===== TOP ===== */
         .booking-top{
-
-            display:flex;
-
-            justify-content:space-between;
-
-            align-items:center;
-
-            flex-wrap:wrap;
-
-            gap:25px;
-
-            margin-bottom:40px;
-
-            position:relative;
-
-            z-index:2;
-
+            display:flex;justify-content:space-between;align-items:center;
+            flex-wrap:wrap;gap:24px;margin-bottom:38px;position:relative;z-index:2;
         }
-
-        .booking-left{
-
-            display:flex;
-
-            align-items:center;
-
-            gap:25px;
-
-            flex-wrap:wrap;
-
-        }
-
+        .booking-left{display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
         .booking-left img{
-
-            width:120px;
-            height:120px;
-
-            border-radius:50%;
-
-            background:white;
-
-            padding:10px;
-
-            border:5px solid #f59e0b;
-
-            box-shadow:0 15px 30px rgba(249,115,22,0.2);
-
+            width:100px;height:100px;border-radius:50%;background:white;padding:8px;
+            border:4px solid #f59e0b;box-shadow:0 12px 28px rgba(249,115,22,0.2);
         }
-
-        .booking-text h1{
-
-            color:#7c2d12;
-
-            font-size:40px;
-
-            margin-bottom:12px;
-
-            font-weight:700;
-
-        }
-
-        .booking-text p{
-
-            color:#6b7280;
-
-            line-height:30px;
-
-            max-width:650px;
-
-            font-size:16px;
-
-        }
-
+        .booking-text h1{color:#7c2d12;font-size:36px;margin-bottom:10px;font-weight:700;}
+        .booking-text p{color:#6b7280;line-height:28px;max-width:600px;font-size:15px;}
         .seva-badge{
-
-            background:linear-gradient(
-                135deg,
-                #f59e0b,
-                #ea580c
-            );
-
-            color:white;
-
-            padding:14px 25px;
-
-            border-radius:40px;
-
-            font-size:14px;
-
-            font-weight:700;
-
-            box-shadow:0 10px 25px rgba(249,115,22,0.25);
-
+            background:linear-gradient(135deg,#f59e0b,#ea580c);color:white;
+            padding:12px 22px;border-radius:40px;font-size:13px;font-weight:700;
+            box-shadow:0 8px 20px rgba(249,115,22,0.25);white-space:nowrap;
         }
 
-        /* ================= MESSAGE ================= */
-
+        /* ===== MESSAGE ===== */
         .message{
-
-            background:#ecfdf5;
-
-            color:#166534;
-
-            padding:16px;
-
-            border-radius:16px;
-
-            margin-bottom:30px;
-
-            text-align:center;
-
-            font-weight:600;
-
-            border:1px solid #bbf7d0;
-
+            background:#ecfdf5;color:#166534;padding:14px;border-radius:14px;
+            margin-bottom:26px;text-align:center;font-weight:600;border:1px solid #bbf7d0;font-size:14px;
         }
 
-        /* ================= FORM ================= */
-
-        form{
-
-            position:relative;
-
-            z-index:2;
-
+        /* ===== FORM ===== */
+        form{position:relative;z-index:2;}
+        .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+        .input-box{display:flex;flex-direction:column;}
+        .input-box label{margin-bottom:8px;color:#7c2d12;font-size:14px;font-weight:600;}
+        .input-box input,.input-box select{
+            width:100%;padding:14px 16px;border-radius:14px;border:2px solid #fed7aa;
+            outline:none;background:white;font-size:14px;transition:0.3s;color:#374151;
+            -webkit-appearance:none;appearance:none;
         }
+        .input-box input:focus,.input-box select:focus{border-color:#ea580c;box-shadow:0 0 12px rgba(234,88,12,0.15);}
 
-        .form-grid{
-
-            display:grid;
-
-            grid-template-columns:repeat(2,1fr);
-
-            gap:25px;
-
-        }
-
-        .input-box{
-
-            display:flex;
-
-            flex-direction:column;
-
-        }
-
-        .input-box label{
-
-            margin-bottom:10px;
-
-            color:#7c2d12;
-
-            font-size:15px;
-
-            font-weight:600;
-
-        }
-
-        .input-box input,
-        .input-box select{
-
-            width:100%;
-
-            padding:16px 18px;
-
-            border-radius:16px;
-
-            border:2px solid #fed7aa;
-
-            outline:none;
-
-            background:white;
-
-            font-size:15px;
-
-            transition:0.3s;
-
-            color:#374151;
-
-        }
-
-        .input-box input:focus,
-        .input-box select:focus{
-
-            border-color:#ea580c;
-
-            box-shadow:0 0 15px rgba(234,88,12,0.15);
-
-        }
-
-        /* ================= BUTTON ================= */
-
+        /* ===== BUTTON ===== */
         .submit-btn{
-
-            width:100%;
-
-            margin-top:35px;
-
-            padding:18px;
-
-            border:none;
-
-            border-radius:18px;
-
-            background:linear-gradient(
-                135deg,
-                #f97316,
-                #c2410c
-            );
-
-            color:white;
-
-            font-size:17px;
-
-            font-weight:700;
-
-            cursor:pointer;
-
-            transition:0.3s;
-
-            box-shadow:0 15px 30px rgba(234,88,12,0.25);
-
+            width:100%;margin-top:30px;padding:16px;border:none;border-radius:16px;
+            background:linear-gradient(135deg,#f97316,#c2410c);color:white;
+            font-size:16px;font-weight:700;cursor:pointer;transition:0.3s;
+            box-shadow:0 12px 28px rgba(234,88,12,0.25);
         }
+        .submit-btn:hover{transform:translateY(-3px);}
 
-        .submit-btn:hover{
-
-            transform:translateY(-3px);
-
-        }
-
-        /* ================= MOBILE ================= */
-
+        /* ===== RESPONSIVE ===== */
         @media(max-width:992px){
-
-            .navbar{
-
-                padding:20px;
-
-                flex-direction:column;
-
-                gap:20px;
-
-            }
-
-            .main-container{
-
-                width:92%;
-
-            }
-
-            .booking-card{
-
-                padding:35px 25px;
-
-            }
-
-            .booking-top{
-
-                flex-direction:column;
-
-                align-items:flex-start;
-
-            }
-
-            .form-grid{
-
-                grid-template-columns:1fr;
-
-            }
-
+            .navbar{padding:14px 20px;}
+            .main-container{width:92%;}
+            .booking-card{padding:32px 24px;}
+            .booking-top{flex-direction:column;align-items:flex-start;}
+            .form-grid{grid-template-columns:1fr;}
         }
 
-        @media(max-width:600px){
-
-            .booking-left{
-
-                flex-direction:column;
-
-                text-align:center;
-
-            }
-
-            .booking-top{
-
-                align-items:center;
-
-                text-align:center;
-
-            }
-
-            .booking-text h1{
-
-                font-size:32px;
-
-            }
-
-            .logo-text h2{
-
-                font-size:24px;
-
-            }
-
+        @media(max-width:768px){
+            .main-container{width:96%;margin:24px auto;}
+            .booking-card{padding:24px 18px;border-radius:22px;}
+            .booking-left{flex-direction:column;align-items:center;text-align:center;width:100%;}
+            .booking-left img{width:80px;height:80px;}
+            .booking-text h1{font-size:28px;}
+            .booking-text p{font-size:14px;}
+            .booking-top{align-items:center;text-align:center;}
+            .seva-badge{align-self:center;}
+            .logo-text h2{font-size:18px;}
+            .logo-section img{width:46px;height:46px;}
+            .navbar{padding:12px 16px;}
+            .back-btn{padding:9px 16px;font-size:13px;}
+            .input-box label{font-size:13px;}
+            .input-box input,.input-box select{font-size:14px;padding:13px 14px;}
+            .submit-btn{font-size:15px;padding:15px;}
         }
 
+        @media(max-width:480px){
+            .logo-text p{display:none;}
+            .logo-text h2{font-size:16px;}
+            .booking-text h1{font-size:24px;}
+        }
     </style>
-
 </head>
-
 <body>
 
-    <!-- ================= NAVBAR ================= -->
-
+    <!-- NAVBAR -->
     <div class="navbar">
-
         <div class="logo-section">
-
-            <img src="{% static 'logo.png' %}"
-                 alt="Temple Logo">
-
+            <img src="{% static 'logo.png' %}" alt="Temple Logo">
             <div class="logo-text">
-
-                <h2>
-
-                    Srivari Seva Portal
-
-                </h2>
-
-                <p>
-
-                    Online Darshan & Temple Services
-
-                </p>
-
+                <h2>Srivari Seva Portal</h2>
+                <p>Online Darshan & Temple Services</p>
             </div>
-
         </div>
-
-        <a href="{% url 'home' %}"
-           class="back-btn">
-
-            ← Back To Home
-
-        </a>
-
+        <a href="{% url 'home' %}" class="back-btn">← Back To Home</a>
     </div>
 
-    <!-- ================= MAIN ================= -->
-
+    <!-- MAIN -->
     <div class="main-container">
-
         <div class="booking-card">
 
             <!-- TOP -->
-
             <div class="booking-top">
-
                 <div class="booking-left">
-
-                    <img src="{% static 'logo.png' %}"
-                         alt="Temple Logo">
-
+                    <img src="{% static 'logo.png' %}" alt="Temple Logo">
                     <div class="booking-text">
-
-                        <h1>
-
-                            Seva Booking
-
-                        </h1>
-
-                        <p>
-
-                            Book your preferred seva online
-                            and receive instant confirmation
-                            for your spiritual temple services.
-
-                        </p>
-
+                        <h1>Seva Booking</h1>
+                        <p>Book your preferred seva online and receive instant confirmation for your spiritual temple services.</p>
                     </div>
-
                 </div>
-
-                <div class="seva-badge">
-
-                    Temple Seva
-
-                </div>
-
+                <div class="seva-badge">Temple Seva</div>
             </div>
 
             <!-- MESSAGE -->
-
             {% if messages %}
-
                 {% for message in messages %}
-
-                    <div class="message">
-
-                        {{ message }}
-
-                    </div>
-
+                    <div class="message">{{ message }}</div>
                 {% endfor %}
-
             {% endif %}
 
             <!-- FORM -->
-
             <form method="POST">
-
                 {% csrf_token %}
-
                 <div class="form-grid">
-
-                    <!-- FULL NAME -->
-
                     <div class="input-box">
-
-                        <label>
-
-                            Full Name
-
-                        </label>
-
-                        <input type="text"
-                               name="full_name"
-                               placeholder="Enter Full Name"
-                               required>
-
+                        <label>Full Name</label>
+                        <input type="text" name="full_name" placeholder="Enter Full Name" required>
                     </div>
-
-                    <!-- MOBILE -->
-
                     <div class="input-box">
-
-                        <label>
-
-                            Mobile Number
-
-                        </label>
-
-                        <input type="text"
-                               name="mobile"
-                               placeholder="Enter Mobile Number"
-                               maxlength="10"
-                               required>
-
+                        <label>Mobile Number</label>
+                        <input type="tel" name="mobile" placeholder="Enter Mobile Number" maxlength="10" required>
                     </div>
-
-                    <!-- SEVA WITH TIME -->
-
                     <div class="input-box">
-
-                        <label>
-
-                            Select Seva
-
-                        </label>
-
-                        <select name="seva_name"
-                                required>
-
-                            <option value="">
-
-                                Select Seva & Time
-
-                            </option>
-
-                            <option value="Suprabhata Seva - 3:00 AM">
-
-                                Suprabhata Seva — 3:00 AM
-
-                            </option>
-
-                            <option value="Thomala Seva - 4:00 AM">
-
-                                Thomala Seva — 4:00 AM
-
-                            </option>
-
-                            <option value="Archana - 4:30 AM">
-
-                                Archana — 4:30 AM
-
-                            </option>
-
-                            <option value="Kalyanotsavam - 10:00 AM">
-
-                                Kalyanotsavam — 10:00 AM
-
-                            </option>
-
-                            <option value="Unjal Seva - 7:00 PM">
-
-                                Unjal Seva — 7:00 PM
-
-                            </option>
-
-                            <option value="Sahasra Deepalankara Seva - 5:30 PM">
-
-                                Sahasra Deepalankara Seva — 5:30 PM
-
-                            </option>
-
+                        <label>Select Seva</label>
+                        <select name="seva_name" required>
+                            <option value="">Select Seva & Time</option>
+                            <option value="Suprabhata Seva - 3:00 AM">Suprabhata Seva — 3:00 AM</option>
+                            <option value="Thomala Seva - 4:00 AM">Thomala Seva — 4:00 AM</option>
+                            <option value="Archana - 4:30 AM">Archana — 4:30 AM</option>
+                            <option value="Kalyanotsavam - 10:00 AM">Kalyanotsavam — 10:00 AM</option>
+                            <option value="Unjal Seva - 7:00 PM">Unjal Seva — 7:00 PM</option>
+                            <option value="Sahasra Deepalankara Seva - 5:30 PM">Sahasra Deepalankara Seva — 5:30 PM</option>
                         </select>
-
                     </div>
-
-                    <!-- DATE -->
-
                     <div class="input-box">
-
-                        <label>
-
-                            Seva Date
-
-                        </label>
-
-                        <input type="date"
-                               name="seva_date"
-                               required>
-
+                        <label>Seva Date</label>
+                        <input type="date" name="seva_date" required>
                     </div>
-
                 </div>
-
-                <!-- BUTTON -->
-
-                <button type="submit"
-                        class="submit-btn">
-
-                    Book Seva
-
-                </button>
-
+                <button type="submit" class="submit-btn">Book Seva</button>
             </form>
 
         </div>
-
     </div>
 
 </body>
-
 </html>

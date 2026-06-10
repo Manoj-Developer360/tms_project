@@ -1,896 +1,241 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temple Donation - Srivari Seva Portal</title>
-
-    <link rel="icon"
-          type="image/png"
-          href="{% static 'logo.png' %}">
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
+    <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Poppins',sans-serif;
-        }
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
         body{
-
-            background:
-                linear-gradient(
-                    rgba(255,247,237,0.92),
-                    rgba(255,247,237,0.92)
-                ),
-                url("{% static 'temple-bg.jpg' %}");
-
-            background-size:cover;
-
-            background-position:center;
-
-            background-attachment:fixed;
-
-            min-height:100vh;
-
-            color:#1f2937;
-
+            background:linear-gradient(rgba(255,247,237,0.92),rgba(255,247,237,0.92)),url("{% static 'temple-bg.jpg' %}");
+            background-size:cover;background-position:center;background-attachment:fixed;
+            min-height:100vh;color:#1f2937;
         }
 
-        /* ================= NAVBAR ================= */
-
+        /* ===== NAVBAR ===== */
         .navbar{
-
-            width:100%;
-
-            padding:18px 70px;
-
-            display:flex;
-
-            justify-content:space-between;
-
-            align-items:center;
-
-            background:rgba(255,255,255,0.92);
-
-            backdrop-filter:blur(14px);
-
-            box-shadow:0 4px 30px rgba(0,0,0,0.08);
-
-            position:sticky;
-
-            top:0;
-
-            z-index:999;
-
+            width:100%;padding:16px 60px;display:flex;justify-content:space-between;align-items:center;
+            background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);
+            box-shadow:0 4px 30px rgba(0,0,0,0.08);position:sticky;top:0;z-index:999;
         }
-
-        .logo-section{
-
-            display:flex;
-
-            align-items:center;
-
-            gap:16px;
-
-        }
-
-        .logo-section img{
-
-            width:75px;
-            height:75px;
-
-            object-fit:contain;
-
-        }
-
-        .logo-text h2{
-
-            color:#166534;
-
-            font-size:30px;
-
-            font-weight:700;
-
-        }
-
-        .logo-text p{
-
-            color:#6b7280;
-
-            font-size:14px;
-
-            margin-top:3px;
-
-        }
-
+        .logo-section{display:flex;align-items:center;gap:14px;}
+        .logo-section img{width:60px;height:60px;object-fit:contain;}
+        .logo-text h2{color:#7c2d12;font-size:22px;font-weight:700;}
+        .logo-text p{color:#6b7280;font-size:13px;margin-top:2px;}
         .back-btn{
-
-            padding:13px 24px;
-
-            border-radius:14px;
-
-            background:linear-gradient(
-                135deg,
-                #16a34a,
-                #15803d
-            );
-
-            color:white;
-
-            text-decoration:none;
-
-            font-weight:600;
-
-            transition:0.3s;
-
-            box-shadow:0 10px 25px rgba(22,163,74,0.2);
-
+            padding:11px 22px;border-radius:12px;background:linear-gradient(135deg,#f97316,#ea580c);
+            color:white;text-decoration:none;font-weight:600;transition:0.3s;
+            box-shadow:0 8px 20px rgba(249,115,22,0.2);font-size:14px;white-space:nowrap;
         }
+        .back-btn:hover{transform:translateY(-2px);}
 
-        .back-btn:hover{
+        /* ===== MAIN ===== */
+        .main-container{width:72%;margin:44px auto;}
 
-            transform:translateY(-3px);
-
-        }
-
-        /* ================= MAIN ================= */
-
-        .main-container{
-
-            width:75%;
-
-            margin:50px auto;
-
-        }
-
-        /* ================= DONATION CARD ================= */
-
+        /* ===== DONATION CARD ===== */
         .donation-card{
-
-            width:100%;
-
-            background:rgba(255,255,255,0.94);
-
-            border-radius:35px;
-
-            padding:50px;
-
-            box-shadow:0 20px 50px rgba(0,0,0,0.08);
-
-            position:relative;
-
-            overflow:hidden;
-
+            width:100%;background:rgba(255,255,255,0.95);border-radius:32px;padding:48px;
+            box-shadow:0 20px 50px rgba(0,0,0,0.08);position:relative;overflow:hidden;
         }
-
         .donation-card::before{
-
-            content:'';
-
-            position:absolute;
-
-            width:320px;
-            height:320px;
-
-            background:rgba(22,163,74,0.08);
-
-            border-radius:50%;
-
-            top:-130px;
-            right:-120px;
-
+            content:'';position:absolute;width:280px;height:280px;
+            background:rgba(34,197,94,0.07);border-radius:50%;top:-120px;right:-110px;
         }
 
-        /* ================= TOP ================= */
-
+        /* ===== TOP ===== */
         .donation-top{
-
-            display:flex;
-
-            justify-content:space-between;
-
-            align-items:center;
-
-            flex-wrap:wrap;
-
-            gap:25px;
-
-            margin-bottom:40px;
-
-            position:relative;
-
-            z-index:2;
-
+            display:flex;justify-content:space-between;align-items:center;
+            flex-wrap:wrap;gap:24px;margin-bottom:38px;position:relative;z-index:2;
         }
-
-        .donation-left{
-
-            display:flex;
-
-            align-items:center;
-
-            gap:25px;
-
-            flex-wrap:wrap;
-
-        }
-
+        .donation-left{display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
         .donation-left img{
-
-            width:120px;
-            height:120px;
-
-            border-radius:50%;
-
-            background:white;
-
-            padding:10px;
-
-            border:5px solid #22c55e;
-
-            box-shadow:0 15px 30px rgba(22,163,74,0.2);
-
+            width:100px;height:100px;border-radius:50%;background:white;padding:8px;
+            border:4px solid #22c55e;box-shadow:0 12px 28px rgba(34,197,94,0.2);
         }
-
-        .donation-text h1{
-
-            color:#166534;
-
-            font-size:40px;
-
-            margin-bottom:12px;
-
-            font-weight:700;
-
-        }
-
-        .donation-text p{
-
-            color:#6b7280;
-
-            line-height:30px;
-
-            max-width:650px;
-
-            font-size:16px;
-
-        }
-
+        .donation-text h1{color:#7c2d12;font-size:36px;margin-bottom:10px;font-weight:700;}
+        .donation-text p{color:#6b7280;line-height:28px;max-width:600px;font-size:15px;}
         .donation-badge{
-
-            background:linear-gradient(
-                135deg,
-                #22c55e,
-                #15803d
-            );
-
-            color:white;
-
-            padding:14px 25px;
-
-            border-radius:40px;
-
-            font-size:14px;
-
-            font-weight:700;
-
-            box-shadow:0 10px 25px rgba(22,163,74,0.25);
-
+            background:linear-gradient(135deg,#22c55e,#15803d);color:white;
+            padding:12px 22px;border-radius:40px;font-size:13px;font-weight:700;
+            box-shadow:0 8px 20px rgba(34,197,94,0.25);white-space:nowrap;
         }
 
-        /* ================= MESSAGE ================= */
-
+        /* ===== MESSAGE ===== */
         .message{
-
-            background:#ecfdf5;
-
-            color:#166534;
-
-            padding:16px;
-
-            border-radius:16px;
-
-            margin-bottom:30px;
-
-            text-align:center;
-
-            font-weight:600;
-
-            border:1px solid #bbf7d0;
-
+            background:#ecfdf5;color:#166534;padding:14px;border-radius:14px;
+            margin-bottom:26px;text-align:center;font-weight:600;border:1px solid #bbf7d0;font-size:14px;
         }
 
-        /* ================= FORM ================= */
-
-        form{
-
-            position:relative;
-
-            z-index:2;
-
-        }
-
-        .form-grid{
-
-            display:grid;
-
-            grid-template-columns:repeat(2,1fr);
-
-            gap:25px;
-
-        }
-
-        .input-box{
-
-            display:flex;
-
-            flex-direction:column;
-
-        }
-
-        .input-box label{
-
-            margin-bottom:10px;
-
-            color:#166534;
-
-            font-size:15px;
-
-            font-weight:600;
-
-        }
-
+        /* ===== FORM ===== */
+        form{position:relative;z-index:2;}
+        .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+        .full-width{grid-column:span 2;}
+        .input-box{display:flex;flex-direction:column;}
+        .input-box label{margin-bottom:8px;color:#166534;font-size:14px;font-weight:600;}
         .input-box input{
-
-            width:100%;
-
-            padding:16px 18px;
-
-            border-radius:16px;
-
-            border:2px solid #bbf7d0;
-
-            outline:none;
-
-            background:white;
-
-            font-size:15px;
-
-            transition:0.3s;
-
-            color:#374151;
-
+            width:100%;padding:14px 16px;border-radius:14px;border:2px solid #bbf7d0;
+            outline:none;background:white;font-size:14px;transition:0.3s;color:#374151;
         }
+        .input-box input:focus{border-color:#22c55e;box-shadow:0 0 12px rgba(34,197,94,0.15);}
 
-        .input-box input:focus{
-
-            border-color:#16a34a;
-
-            box-shadow:0 0 15px rgba(22,163,74,0.15);
-
-        }
-
-        /* ADDRESS FULL WIDTH */
-
-        .full-width{
-
-            grid-column:1/3;
-
-        }
-
-        /* ================= QUICK AMOUNTS ================= */
-
-        .amount-section{
-
-            margin-top:30px;
-
-        }
-
-        .amount-title{
-
-            color:#166534;
-
-            font-size:17px;
-
-            font-weight:700;
-
-            margin-bottom:18px;
-
-        }
-
-        .amount-box{
-
-            display:grid;
-
-            grid-template-columns:repeat(3,1fr);
-
-            gap:18px;
-
-            margin-bottom:30px;
-
-        }
-
+        /* ===== QUICK AMOUNTS ===== */
+        .amount-section{margin-top:26px;}
+        .amount-title{color:#166534;font-size:15px;font-weight:700;margin-bottom:14px;}
+        .amount-box{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px;}
         .amount-btn{
-
-            border:none;
-
-            padding:16px;
-
-            border-radius:18px;
-
-            background:#f0fdf4;
-
-            color:#166534;
-
-            font-size:16px;
-
-            font-weight:700;
-
-            cursor:pointer;
-
-            transition:0.3s;
-
-            border:2px solid #bbf7d0;
-
+            border:2px solid #bbf7d0;padding:14px 10px;border-radius:14px;
+            background:#f0fdf4;color:#166534;font-size:15px;font-weight:700;
+            cursor:pointer;transition:0.3s;
         }
-
         .amount-btn:hover{
-
-            background:linear-gradient(
-                135deg,
-                #22c55e,
-                #15803d
-            );
-
-            color:white;
-
-            transform:translateY(-3px);
-
-            box-shadow:0 10px 20px rgba(22,163,74,0.2);
-
+            background:linear-gradient(135deg,#22c55e,#15803d);color:white;
+            transform:translateY(-2px);box-shadow:0 8px 18px rgba(22,163,74,0.2);border-color:transparent;
+        }
+        .amount-btn.active{
+            background:linear-gradient(135deg,#22c55e,#15803d);color:white;border-color:transparent;
         }
 
-        /* ================= BUTTON ================= */
-
+        /* ===== BUTTON ===== */
         .submit-btn{
-
-            width:100%;
-
-            margin-top:35px;
-
-            padding:18px;
-
-            border:none;
-
-            border-radius:18px;
-
-            background:linear-gradient(
-                135deg,
-                #22c55e,
-                #15803d
-            );
-
-            color:white;
-
-            font-size:17px;
-
-            font-weight:700;
-
-            cursor:pointer;
-
-            transition:0.3s;
-
-            box-shadow:0 15px 30px rgba(22,163,74,0.25);
-
+            width:100%;margin-top:28px;padding:16px;border:none;border-radius:16px;
+            background:linear-gradient(135deg,#22c55e,#15803d);color:white;
+            font-size:16px;font-weight:700;cursor:pointer;transition:0.3s;
+            box-shadow:0 12px 28px rgba(22,163,74,0.25);
         }
+        .submit-btn:hover{transform:translateY(-3px);}
 
-        .submit-btn:hover{
-
-            transform:translateY(-3px);
-
-        }
-
-        /* ================= MOBILE ================= */
-
+        /* ===== RESPONSIVE ===== */
         @media(max-width:992px){
-
-            .navbar{
-
-                padding:20px;
-
-                flex-direction:column;
-
-                gap:20px;
-
-            }
-
-            .main-container{
-
-                width:92%;
-
-            }
-
-            .donation-card{
-
-                padding:35px 25px;
-
-            }
-
-            .donation-top{
-
-                flex-direction:column;
-
-                align-items:flex-start;
-
-            }
-
-            .form-grid{
-
-                grid-template-columns:1fr;
-
-            }
-
-            .full-width{
-
-                grid-column:auto;
-
-            }
-
-            .amount-box{
-
-                grid-template-columns:repeat(2,1fr);
-
-            }
-
+            .navbar{padding:14px 20px;}
+            .main-container{width:92%;}
+            .donation-card{padding:32px 24px;}
+            .donation-top{flex-direction:column;align-items:flex-start;}
+            .form-grid{grid-template-columns:1fr;}
+            .full-width{grid-column:auto;}
+            .amount-box{grid-template-columns:repeat(2,1fr);}
         }
 
-        @media(max-width:600px){
-
-            .donation-left{
-
-                flex-direction:column;
-
-                text-align:center;
-
-            }
-
-            .donation-top{
-
-                align-items:center;
-
-                text-align:center;
-
-            }
-
-            .donation-text h1{
-
-                font-size:32px;
-
-            }
-
-            .logo-text h2{
-
-                font-size:24px;
-
-            }
-
-            .amount-box{
-
-                grid-template-columns:1fr;
-
-            }
-
+        @media(max-width:768px){
+            .main-container{width:96%;margin:24px auto;}
+            .donation-card{padding:24px 18px;border-radius:22px;}
+            .donation-left{flex-direction:column;align-items:center;text-align:center;width:100%;}
+            .donation-left img{width:80px;height:80px;}
+            .donation-text h1{font-size:28px;}
+            .donation-text p{font-size:14px;}
+            .donation-top{align-items:center;text-align:center;}
+            .donation-badge{align-self:center;}
+            .logo-text h2{font-size:18px;}
+            .logo-section img{width:46px;height:46px;}
+            .navbar{padding:12px 16px;}
+            .back-btn{padding:9px 16px;font-size:13px;}
+            .input-box label{font-size:13px;}
+            .input-box input{font-size:14px;padding:13px 14px;}
+            .submit-btn{font-size:15px;padding:15px;}
+            .amount-btn{font-size:14px;padding:12px 8px;}
         }
 
+        @media(max-width:480px){
+            .logo-text p{display:none;}
+            .logo-text h2{font-size:16px;}
+            .donation-text h1{font-size:24px;}
+            .amount-box{grid-template-columns:repeat(3,1fr);gap:10px;}
+            .amount-btn{font-size:13px;padding:10px 4px;}
+        }
     </style>
-
 </head>
-
 <body>
 
-    <!-- ================= NAVBAR ================= -->
-
+    <!-- NAVBAR -->
     <div class="navbar">
-
         <div class="logo-section">
-
-            <img src="{% static 'logo.png' %}"
-                 alt="Temple Logo">
-
+            <img src="{% static 'logo.png' %}" alt="Temple Logo">
             <div class="logo-text">
-
-                <h2>
-
-                    Srivari Seva Portal
-
-                </h2>
-
-                <p>
-
-                    Online Darshan & Temple Services
-
-                </p>
-
+                <h2>Srivari Seva Portal</h2>
+                <p>Online Darshan & Temple Services</p>
             </div>
-
         </div>
-
-        <a href="{% url 'home' %}"
-           class="back-btn">
-
-            ← Back To Home
-
-        </a>
-
+        <a href="{% url 'home' %}" class="back-btn">← Back To Home</a>
     </div>
 
-    <!-- ================= MAIN ================= -->
-
+    <!-- MAIN -->
     <div class="main-container">
-
         <div class="donation-card">
 
             <!-- TOP -->
-
             <div class="donation-top">
-
                 <div class="donation-left">
-
-                    <img src="{% static 'logo.png' %}"
-                         alt="Temple Logo">
-
+                    <img src="{% static 'logo.png' %}" alt="Temple Logo">
                     <div class="donation-text">
-
-                        <h1>
-
-                            Temple Donation
-
-                        </h1>
-
-                        <p>
-
-                            Support annadhanam, temple festivals,
-                            spiritual activities and seva services
-                            through your valuable contribution.
-
-                        </p>
-
+                        <h1>Temple Donation</h1>
+                        <p>Support annadhanam, temple festivals, spiritual activities and seva services through your valuable contribution.</p>
                     </div>
-
                 </div>
-
-                <div class="donation-badge">
-
-                    Divine Contribution
-
-                </div>
-
+                <div class="donation-badge">Divine Contribution</div>
             </div>
 
             <!-- MESSAGE -->
-
             {% if messages %}
-
                 {% for message in messages %}
-
-                    <div class="message">
-
-                        {{ message }}
-
-                    </div>
-
+                    <div class="message">{{ message }}</div>
                 {% endfor %}
-
             {% endif %}
 
             <!-- FORM -->
-
             <form method="POST">
-
                 {% csrf_token %}
-
                 <div class="form-grid">
-
-                    <!-- FULL NAME -->
-
                     <div class="input-box">
-
-                        <label>
-
-                            Full Name
-
-                        </label>
-
-                        <input type="text"
-                               name="full_name"
-                               placeholder="Enter Full Name"
-                               required>
-
+                        <label>Full Name</label>
+                        <input type="text" name="full_name" placeholder="Enter Full Name" required>
                     </div>
-
-                    <!-- MOBILE -->
-
                     <div class="input-box">
-
-                        <label>
-
-                            Mobile Number
-
-                        </label>
-
-                        <input type="text"
-                               name="mobile"
-                               placeholder="Enter Mobile Number"
-                               maxlength="10"
-                               required>
-
+                        <label>Mobile Number</label>
+                        <input type="tel" name="mobile" placeholder="Enter Mobile Number" maxlength="10" required>
                     </div>
-
-                    <!-- EMAIL -->
-
                     <div class="input-box">
-
-                        <label>
-
-                            Email Address
-
-                        </label>
-
-                        <input type="email"
-                               name="email"
-                               placeholder="Enter Email Address"
-                               required>
-
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="Enter Email Address" required>
                     </div>
-
-                    <!-- DONATION AMOUNT -->
-
                     <div class="input-box">
-
-                        <label>
-
-                            Donation Amount
-
-                        </label>
-
-                        <input type="number"
-                               id="amount"
-                               name="amount"
-                               placeholder="Enter Donation Amount"
-                               required>
-
+                        <label>Donation Amount (₹)</label>
+                        <input type="number" id="amount" name="amount" placeholder="Enter Amount" required inputmode="numeric">
                     </div>
-
-                    <!-- ADDRESS -->
-
                     <div class="input-box full-width">
-
-                        <label>
-
-                            Address
-
-                        </label>
-
-                        <input type="text"
-                               name="address"
-                               placeholder="Enter Full Address"
-                               required>
-
+                        <label>Address</label>
+                        <input type="text" name="address" placeholder="Enter Full Address" required>
                     </div>
-
                 </div>
 
-                <!-- QUICK AMOUNT -->
-
+                <!-- QUICK AMOUNTS -->
                 <div class="amount-section">
-
-                    <div class="amount-title">
-
-                        Quick Donation Amount
-
-                    </div>
-
+                    <div class="amount-title">Quick Donation Amount</div>
                     <div class="amount-box">
-
-                        <button type="button"
-                                class="amount-btn"
-                                onclick="setAmount(100)">
-
-                            ₹100
-
-                        </button>
-
-                        <button type="button"
-                                class="amount-btn"
-                                onclick="setAmount(500)">
-
-                            ₹500
-
-                        </button>
-
-                        <button type="button"
-                                class="amount-btn"
-                                onclick="setAmount(1000)">
-
-                            ₹1000
-
-                        </button>
-
-                        <button type="button"
-                                class="amount-btn"
-                                onclick="setAmount(2000)">
-
-                            ₹2000
-
-                        </button>
-
-                        <button type="button"
-                                class="amount-btn"
-                                onclick="setAmount(5000)">
-
-                            ₹5000
-
-                        </button>
-
-                        <button type="button"
-                                class="amount-btn"
-                                onclick="setAmount(10000)">
-
-                            ₹10000
-
-                        </button>
-
+                        <button type="button" class="amount-btn" onclick="setAmount(100)">₹100</button>
+                        <button type="button" class="amount-btn" onclick="setAmount(500)">₹500</button>
+                        <button type="button" class="amount-btn" onclick="setAmount(1000)">₹1000</button>
+                        <button type="button" class="amount-btn" onclick="setAmount(2000)">₹2000</button>
+                        <button type="button" class="amount-btn" onclick="setAmount(5000)">₹5000</button>
+                        <button type="button" class="amount-btn" onclick="setAmount(10000)">₹10000</button>
                     </div>
-
                 </div>
 
-                <!-- BUTTON -->
-
-                <button type="submit"
-                        class="submit-btn">
-
-                    Donate Now
-
-                </button>
-
+                <button type="submit" class="submit-btn">Donate Now</button>
             </form>
 
         </div>
-
     </div>
 
     <script>
-
-        function setAmount(value){
-
-            document.getElementById(
-                "amount"
-            ).value = value;
-
-        }
-
+    function setAmount(value){
+        document.getElementById("amount").value = value;
+        document.querySelectorAll(".amount-btn").forEach(b => b.classList.remove("active"));
+        event.target.classList.add("active");
+    }
     </script>
 
 </body>
-
 </html>
