@@ -46,57 +46,35 @@ def login(request):
     if request.method == "POST":
 
         name = request.POST.get("name")
-
         email = request.POST.get("email")
-
         mobile = request.POST.get("mobile")
-
         aadhar = request.POST.get("aadhar")
-
         address = request.POST.get("address")
 
-        # CHECK EXISTING USER
-
+        # CHECK IF USER EXISTS BY AADHAAR
         existing_user = LoginUser.objects.filter(
-            mobile_number=mobile,
             aadhar_number=aadhar
         ).first()
 
         # GENERATE OTP
-
         otp = random.randint(100000, 999999)
 
-        # STORE SESSION
+        # STORE OTP & USER DETAILS IN SESSION
+        request.session["otp"] = str(otp)
+        request.session["display_otp"] = str(otp)
 
-        request.session['otp'] = str(otp)
-
-        request.session['display_otp'] = str(otp)
-
-        request.session['name'] = name
-
-        request.session['email'] = email
-
-        request.session['mobile'] = mobile
-
-        request.session['aadhar'] = aadhar
-
-        request.session['address'] = address
-
-        # EXISTING USER CHECK
+        request.session["name"] = name
+        request.session["email"] = email
+        request.session["mobile"] = mobile
+        request.session["aadhar"] = aadhar
+        request.session["address"] = address
 
         if existing_user:
-
-            request.session['existing_user_id'] = existing_user.id
-
             messages.success(
                 request,
                 "Welcome Back! OTP Sent Successfully"
             )
-
         else:
-
-            request.session['existing_user_id'] = None
-
             messages.success(
                 request,
                 "New User OTP Sent Successfully"
@@ -114,54 +92,31 @@ def otp(request):
     if request.method == "POST":
 
         entered_otp = request.POST.get("otp")
-
         session_otp = request.session.get("otp")
 
-        # CHECK OTP
-
+        # VERIFY OTP
         if entered_otp == session_otp:
 
-            existing_user_id = request.session.get(
-                "existing_user_id"
+            aadhar = request.session.get("aadhar")
+
+            # CREATE NEW USER OR UPDATE EXISTING USER
+            user, created = LoginUser.objects.update_or_create(
+                aadhar_number=aadhar,
+                defaults={
+                    "name": request.session.get("name"),
+                    "email": request.session.get("email"),
+                    "mobile_number": request.session.get("mobile"),
+                    "address": request.session.get("address"),
+                }
             )
 
-            # EXISTING USER LOGIN
-
-            if existing_user_id:
-
-                user = LoginUser.objects.get(
-                    id=existing_user_id
-                )
-
-            else:
-
-                # CREATE NEW USER
-
-                user = LoginUser.objects.create(
-
-                    name=request.session.get("name"),
-
-                    email=request.session.get("email"),
-
-                    mobile_number=request.session.get("mobile"),
-
-                    aadhar_number=request.session.get("aadhar"),
-
-                    address=request.session.get("address")
-
-                )
-
             # LOGIN SESSION
-
-            request.session['user_id'] = user.id
-
-            request.session['is_logged_in'] = True
+            request.session["user_id"] = user.id
+            request.session["is_logged_in"] = True
 
             # CLEAR OTP
-
-            request.session.pop('otp', None)
-
-            request.session.pop('display_otp', None)
+            request.session.pop("otp", None)
+            request.session.pop("display_otp", None)
 
             messages.success(
                 request,
@@ -180,8 +135,6 @@ def otp(request):
             return redirect("otp")
 
     return render(request, "otp.html")
-
-
 # PROFILE PAGE
 
 def profile(request):
